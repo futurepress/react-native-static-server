@@ -1,8 +1,8 @@
 
 {
   "name": "react-native-static-server",
-  "version": "1.0.0",
-  "description": "A static http file server for react native",
+  "version": "0.1.0",
+  "description": "HTTP static file server for React Native",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
