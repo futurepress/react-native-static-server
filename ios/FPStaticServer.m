@@ -153,7 +153,7 @@ RCT_EXPORT_METHOD(start: (NSString *)port
         NSString* ip = self.localhost_only ? IP_LOCALHOST : [self getIPAddress:YES];
         NSLog(@"Started httpd on port %d", listenPort);
 
-        self.url = [NSString stringWithFormat:@"http://%@:%d/", ip, listenPort];
+        self.url = [NSString stringWithFormat:@"http://%@:%d", ip, listenPort];
         resolve(self.url);
 
     } else {
