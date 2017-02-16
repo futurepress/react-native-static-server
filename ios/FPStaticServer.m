@@ -44,10 +44,10 @@ RCT_EXPORT_MODULE();
     NSArray *searchArray = preferIPv4 ?
     @[ IOS_WIFI @"/" IP_ADDR_IPv4, IOS_WIFI @"/" IP_ADDR_IPv6, IOS_CELLULAR @"/" IP_ADDR_IPv4, IOS_CELLULAR @"/" IP_ADDR_IPv6 ] :
     @[ IOS_WIFI @"/" IP_ADDR_IPv6, IOS_WIFI @"/" IP_ADDR_IPv4, IOS_CELLULAR @"/" IP_ADDR_IPv6, IOS_CELLULAR @"/" IP_ADDR_IPv4 ] ;
-    
+
     NSDictionary *addresses = [self getIPAddresses];
     NSLog(@"addresses: %@", addresses);
-    
+
     __block NSString *address;
     [searchArray enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop)
      {
@@ -60,7 +60,7 @@ RCT_EXPORT_MODULE();
 - (NSDictionary *)getIPAddresses
 {
     NSMutableDictionary *addresses = [NSMutableDictionary dictionaryWithCapacity:8];
-    
+
     // retrieve the current interfaces - returns 0 on success
     struct ifaddrs *interfaces;
     if(!getifaddrs(&interfaces)) {
@@ -97,31 +97,29 @@ RCT_EXPORT_MODULE();
     return [addresses count] ? addresses : nil;
 }
 
-RCT_EXPORT_METHOD(port:(NSString *)port
+RCT_EXPORT_METHOD(start: (NSString *)port
                   root:(NSString *)optroot
-                  localOnly:(NSString *)localhost_only
+                  localOnly:(BOOL *)localhost_only
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject) {
 
     NSString * root;
-    
+
     if( [optroot length] == 0 ){
         root = [NSString stringWithFormat:@"%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] ];
     } else if([optroot hasPrefix:@"/"]) {
         root = optroot;
     } else if( [optroot isEqualToString:@"BUNDLE"] ){
-        root = [NSString stringWithFormat:@"%@/www", [[NSBundle mainBundle] bundlePath] ];
-    } else if( [optroot isEqualToString:@"DOCS"] ){
-        root = [NSString stringWithFormat:@"%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] ];
+        root = [NSString stringWithFormat:@"%@", [[NSBundle mainBundle] bundlePath] ];
     }
-    
-    
+
+
     if(root) self.www_root = root;
-    
+
     if(port) self.port = [port intValue];
-    
-    if(localhost_only) self.localhost_only = [localhost_only boolValue];
-    
+
+    self.localhost_only = localhost_only;
+
     if(self.httpServer != nil) {
         if([self.httpServer isRunning]) {
             NSError *error = nil;
@@ -129,14 +127,14 @@ RCT_EXPORT_METHOD(port:(NSString *)port
             return;
         }
     }
-    
+
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     self.httpServer = [[HTTPServer alloc] init];
-    
+
     [self.httpServer setPort:self.port];
-    
+
     if(self.localhost_only) [self.httpServer setInterface:IP_LOCALHOST];
-    
+
     // Serve files from our embedded Web folder
     const char * docroot = [self.www_root UTF8String];
     if(*docroot == '/') {
@@ -147,40 +145,39 @@ RCT_EXPORT_METHOD(port:(NSString *)port
     }
     NSLog(@"Setting document root: %@", self.localPath);
     [self.httpServer setDocumentRoot:self.localPath];
-    
-    
+
+
     NSError *error;
     if([self.httpServer start:&error]) {
         int listenPort = [self.httpServer listeningPort];
         NSString* ip = self.localhost_only ? IP_LOCALHOST : [self getIPAddress:YES];
         NSLog(@"Started httpd on port %d", listenPort);
-        
+
         self.url = [NSString stringWithFormat:@"http://%@:%d/", ip, listenPort];
         resolve(self.url);
-        
+
     } else {
         NSLog(@"Error starting httpd: %@", error);
-        
+
         //        NSString* errmsg = [error description];
         reject(@"server_error", @"server could not start", error);
-        
+
     }
-    
+
 }
 
 RCT_EXPORT_METHOD(stop) {
     if(self.httpServer != nil) {
-        
+
         [self.httpServer stop];
         self.httpServer = nil;
-        
+
         self.localPath = @"";
         self.url = @"";
-        
+
         NSLog(@"httpd stopped");
     }
 }
 
 
 @end
-

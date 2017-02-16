@@ -4,7 +4,7 @@ import { NativeModules } from 'react-native';
 const { FPStaticServer } = NativeModules;
 
 const PORT = "9999";
-const ROOT = "";
+const ROOT = null;
 const LOCALHOST = 'http://127.0.0.1:';
 
 class StaticServer {
@@ -50,7 +50,7 @@ class StaticServer {
 		if( this.started ){
 			console.warn('StaticServer already running');
 		}
-		this.port = this.port;
+
 		this.origin = LOCALHOST + this.port;
 
 		this.started = true;
@@ -68,4 +68,5 @@ class StaticServer {
 		return FPStaticServer.stop();
 	}
 }
+
 export default StaticServer;
