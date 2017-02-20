@@ -1,5 +1,7 @@
-
-import { NativeModules } from 'react-native';
+import {
+	NativeModules,
+	AppState
+ } from 'react-native';
 
 const { FPStaticServer } = NativeModules;
 
@@ -47,26 +49,53 @@ class StaticServer {
 	}
 
 	start() {
-		if( this.started ){
-			console.warn('StaticServer already running');
+		if( this.running ){
+			return console.warn('StaticServer already running');
 		}
 
-		this.origin = LOCALHOST + this.port;
-
 		this.started = true;
+		this.running = true;
+
+		AppState.addEventListener('change', this._handleAppStateChange.bind(this));
 
 		return FPStaticServer.start(this.port, this.root, this.localOnly);
 	}
 
 	stop() {
-		if( !this.started ){
-			console.warn('StaticServer not running');
+		if( !this.running ){
+			return console.warn('StaticServer not running');
 		}
 
-		this.started = false;
+		this.running = false;
 
 		return FPStaticServer.stop();
 	}
+
+	kill() {
+		this.stop();
+		this.started = false;
+		AppState.addEventListener('change', this._handleAppStateChange.bind(this));
+	}
+
+	_handleAppStateChange(appState) {
+		if (!this.started) {
+			return;
+		}
+
+		if (appState === "active" && !this.running) {
+			this.start();
+		}
+
+		if (appState === "background" && this.running) {
+			this.stop();
+		}
+
+		if (appState === "inactive" && this.running) {
+			this.stop();
+		}
+	}
+
+
 }
 
 export default StaticServer;

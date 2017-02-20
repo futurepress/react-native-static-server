@@ -69,6 +69,11 @@ public class FPStaticServerModule extends ReactContextBaseJavaModule implements 
   @ReactMethod
   public void start(String _port, String root, Boolean localhost, Promise promise) {
 
+    if (server != null){
+      promise.resolve(url);
+      return;
+    }
+
     if (_port != null) {
       try {
         port = Integer.parseInt(_port);
@@ -77,34 +82,29 @@ public class FPStaticServerModule extends ReactContextBaseJavaModule implements 
       }
     }
 
-    if (root != null) {
-      if(root.startsWith("/")) {
-        www_root = new File(root);
-        localPath = www_root.getAbsolutePath();
-      } else {
-        www_root = this.reactContext.getFilesDir();
-        localPath = www_root.getAbsolutePath();
-      }
+    if(root != null && root.startsWith("/")) {
+      www_root = new File(root);
+      localPath = www_root.getAbsolutePath();
+    } else {
+      www_root = new File(this.reactContext.getFilesDir(), root);
+      localPath = www_root.getAbsolutePath();
     }
 
     if (localhost != null) {
       localhost_only = localhost;
     }
 
-
     try {
 
       if(localhost_only) {
-        byte[] ipAddr = new byte[]{127, 0, 0, 1};
-        InetAddress localAddr = InetAddress.getByAddress(ipAddr);
-        server = new WebServer(localAddr.toString(), port, www_root);
+        server = new WebServer("localhost", port, www_root);
       } else {
         server = new WebServer(__getLocalIpAddress(), port, www_root);
       }
 
 
       if (localhost_only) {
-        url = "http://127.0.0.1:" + port;
+        url = "http://localhost:" + port;
       } else {
         url = "http://" + __getLocalIpAddress() + ":" + port;
       }
@@ -117,12 +117,10 @@ public class FPStaticServerModule extends ReactContextBaseJavaModule implements 
       String msg = e.getMessage();
 
 
-      Log.w(LOGTAG, e);
 
       // Server doesn't stop on refresh
       if (server != null && msg.equals("bind failed: EADDRINUSE (Address already in use)")){
-        server.stop();
-        start(_port, root, localhost, promise);
+        promise.resolve(url);
       } else {
         promise.reject(null, msg);
       }
@@ -135,6 +133,7 @@ public class FPStaticServerModule extends ReactContextBaseJavaModule implements 
   @ReactMethod
   public void stop() {
     if (server != null) {
+      Log.w(LOGTAG, "Stopped Server");
       server.stop();
       server = null;
     }
@@ -143,12 +142,12 @@ public class FPStaticServerModule extends ReactContextBaseJavaModule implements 
   /* Shut down the server if app is destroyed or paused */
   @Override
   public void onHostResume() {
-    start(null, null, null, null);
+    //start(null, null, null, null);
   }
 
   @Override
   public void onHostPause() {
-    stop();
+    //stop();
   }
 
   @Override

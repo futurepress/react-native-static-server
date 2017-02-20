@@ -22,14 +22,6 @@
 
 @implementation FPStaticServer
 
-//HTTPServer *httpServer;
-//NSString *_localPath = @"";
-//NSString *_url = @"";
-//
-//NSString *_www_root = @"";
-//int _port = 8888;
-//BOOL _localhost_only = false;
-
 @synthesize bridge = _bridge;
 
 RCT_EXPORT_MODULE();
@@ -105,12 +97,14 @@ RCT_EXPORT_METHOD(start: (NSString *)port
 
     NSString * root;
 
-    if( [optroot length] == 0 ){
+    if( [optroot isEqualToString:@"DocumentDir"] ){
         root = [NSString stringWithFormat:@"%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] ];
+    } else if( [optroot isEqualToString:@"BundleDir"] ){
+        root = [NSString stringWithFormat:@"%@", [[NSBundle mainBundle] bundlePath] ];
     } else if([optroot hasPrefix:@"/"]) {
         root = optroot;
-    } else if( [optroot isEqualToString:@"BUNDLE"] ){
-        root = [NSString stringWithFormat:@"%@", [[NSBundle mainBundle] bundlePath] ];
+    } else {
+        root = [NSString stringWithFormat:@"%@/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], optroot ];
     }
 
 
@@ -135,16 +129,10 @@ RCT_EXPORT_METHOD(start: (NSString *)port
 
     if(self.localhost_only) [self.httpServer setInterface:IP_LOCALHOST];
 
-    // Serve files from our embedded Web folder
-    const char * docroot = [self.www_root UTF8String];
-    if(*docroot == '/') {
-        self.localPath = self.www_root;
-    } else {
-        NSString* basePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"www"];
-        self.localPath = [NSString stringWithFormat:@"%@/%@", basePath, self.www_root];
-    }
-    NSLog(@"Setting document root: %@", self.localPath);
-    [self.httpServer setDocumentRoot:self.localPath];
+    //self.localPath = self.www_root;
+
+    // NSLog(@"Setting document root: %@", self.www_root);
+    [self.httpServer setDocumentRoot:self.www_root];
 
 
     NSError *error;
@@ -172,7 +160,7 @@ RCT_EXPORT_METHOD(stop) {
         [self.httpServer stop];
         self.httpServer = nil;
 
-        self.localPath = @"";
+        self.www_root = @"";
         self.url = @"";
 
         NSLog(@"httpd stopped");
