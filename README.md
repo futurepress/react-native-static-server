@@ -82,7 +82,7 @@ let server = new StaticServer(8080, path, {localOnly : true });
 
 ## Credits
 
-* iOS server: (CocoaHTTPServer)[https://github.com/robbiehanson/CocoaHTTPServer]
-* Android server: (NanoHttpd Webserver)[https://github.com/NanoHttpd/nanohttpd]
+* iOS server: [CocoaHTTPServer](https://github.com/robbiehanson/CocoaHTTPServer)
+* Android server: [NanoHttpd Webserver](https://github.com/NanoHttpd/nanohttpd)
 
-Thanks to (CorHttpd)[https://github.com/floatinghotpot/cordova-httpd] and (react-native-httpserver)[https://gitlab.com/base.io/react-native-httpserver#README] for the basis of this library.
+Thanks to [CorHttpd](https://github.com/floatinghotpot/cordova-httpd) and [react-native-httpserver](https://gitlab.com/base.io/react-native-httpserver#README) for the basis of this library.
