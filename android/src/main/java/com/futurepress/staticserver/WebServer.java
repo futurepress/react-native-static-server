@@ -17,6 +17,7 @@ public class WebServer extends SimpleWebServer
         mimeTypes().put("otf", "application/x-font-otf");
         mimeTypes().put("ttf", "application/x-font-ttf");
         mimeTypes().put("js", "application/javascript");
+        mimeTypes().put("svg", "image/svg+xml");
     }
 
 }
