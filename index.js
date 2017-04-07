@@ -5,7 +5,7 @@ import {
 
 const { FPStaticServer } = NativeModules;
 
-const PORT = "9999";
+const PORT = "0";
 const ROOT = null;
 const LOCALHOST = 'http://127.0.0.1:';
 

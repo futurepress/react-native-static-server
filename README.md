@@ -38,7 +38,7 @@ A cross platform component for serving static assets with React Native.
 
 ## Usage
 
-Declare the `StaticServer` with a port or use the default `9999`
+Declare the `StaticServer` with a port or use the default `0` to pick a random available port.
 
 ```javascript
 import StaticServer from 'react-native-static-server';
@@ -64,7 +64,7 @@ import RNFS from 'react-native-fs';
 // create a path you want to write to
 let path = RNFS.DocumentDirectoryPath + '/www';
 
-let server = new StaticServer(8080, path);
+let server = new StaticServer(0, path);
 ```
 
 If the server should only be accessible from within the app, set `localOnly` to `true`

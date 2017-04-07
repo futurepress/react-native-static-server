@@ -77,8 +77,20 @@ public class FPStaticServerModule extends ReactContextBaseJavaModule implements 
     if (_port != null) {
       try {
         port = Integer.parseInt(_port);
+
+        if (port == 0) {
+          try {
+            port = this.findRandomOpenPort();
+          } catch (IOException e) {
+            port = 9999;
+          }
+        }
       } catch(NumberFormatException nfe) {
-        port = 9999;
+        try {
+          port = this.findRandomOpenPort();
+        } catch (IOException e) {
+          port = 9999;
+        }
       }
     }
 
@@ -128,6 +140,18 @@ public class FPStaticServerModule extends ReactContextBaseJavaModule implements 
     }
 
 
+  }
+
+  private Integer findRandomOpenPort() throws IOException {
+    try {
+      ServerSocket socket = new ServerSocket(0);
+      int port = socket.getLocalPort();
+      Log.w(LOGTAG, "port:" + port);
+      socket.close();
+      return port;
+    } catch (IOException e) {
+      return 0;
+    }
   }
 
   @ReactMethod
