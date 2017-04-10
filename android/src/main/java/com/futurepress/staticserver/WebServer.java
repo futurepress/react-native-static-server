@@ -20,4 +20,8 @@ public class WebServer extends SimpleWebServer
         mimeTypes().put("svg", "image/svg+xml");
     }
 
+    @Override
+    protected boolean useGzipWhenAccepted(Response r) {
+        return super.useGzipWhenAccepted(r) && r.getStatus() != Response.Status.NOT_MODIFIED;
+    }
 }
