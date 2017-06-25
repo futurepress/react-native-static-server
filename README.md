@@ -78,7 +78,7 @@ Create a folder in your project's top-level directory (usually next to your node
 
 ##### Add folder (static files) to XCode
 
-This folder **must me added to XCode** so it gets bundled with the app.
+This folder **must be added to XCode** so it gets bundled with the app.
 
 In XCode, `Project Navigator` right click in the folder project → `Add files to "<project>"` → Select the static folder **and clic options (Uncheck copy items if needed, Create folder references)** so don't duplicate files → Clic Add.
 
