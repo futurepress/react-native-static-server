@@ -1,17 +1,19 @@
 #import <React/RCTBridgeModule.h>
 
-@class HTTPServer;
+// GCDWebServer: https://github.com/swisspol/GCDWebServer
+#import "GCDWebServer.h"
 
-@interface FPStaticServer : NSObject <RCTBridgeModule>
-    @property(nonatomic, retain) HTTPServer *httpServer;
+@interface FPStaticServer : NSObject <RCTBridgeModule> {
+    GCDWebServer* _webServer;
+}
+
     @property(nonatomic, retain) NSString *localPath;
     @property(nonatomic, retain) NSString *url;
 
     @property (nonatomic, retain) NSString* www_root;
-    @property (assign) int port;
+    @property (nonatomic, retain) NSNumber* port;
     @property (assign) BOOL localhost_only;
+    @property (assign) BOOL keep_alive;
 
-    - (NSDictionary *)getIPAddresses;
-    - (NSString *)getIPAddress:(BOOL)preferIPv4;
 @end
   

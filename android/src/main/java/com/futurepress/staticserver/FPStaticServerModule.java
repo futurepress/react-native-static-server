@@ -29,6 +29,7 @@ public class FPStaticServerModule extends ReactContextBaseJavaModule implements 
   private File www_root = null;
   private int port = 9999;
   private boolean localhost_only = false;
+  private boolean keep_alive = false;
 
   private String localPath = "";
   private SimpleWebServer server = null;
@@ -67,7 +68,7 @@ public class FPStaticServerModule extends ReactContextBaseJavaModule implements 
   }
 
   @ReactMethod
-  public void start(String _port, String root, Boolean localhost, Promise promise) {
+  public void start(String _port, String root, Boolean localhost, Boolean keepAlive, Promise promise) {
 
     if (server != null){
       promise.resolve(url);
@@ -104,6 +105,10 @@ public class FPStaticServerModule extends ReactContextBaseJavaModule implements 
 
     if (localhost != null) {
       localhost_only = localhost;
+    }
+
+    if (keepAlive != null) {
+      keep_alive = keepAlive;
     }
 
     try {
