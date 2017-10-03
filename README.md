@@ -24,7 +24,7 @@ A cross platform component for serving static assets with React Native.
 #### Android
 
 1. Open up `android/app/src/main/java/[...]/MainActivity.java`
-  - Add `import com.reactlibrary.FPStaticServerPackage;` to the imports at the top of the file
+  - Add `import com.futurepress.staticserver.FPStaticServerPackage;` to the imports at the top of the file
   - Add `new FPStaticServerPackage()` to the list returned by the `getPackages()` method
 2. Append the following lines to `android/settings.gradle`:
   	```
