@@ -83,7 +83,7 @@ class StaticServer {
 	kill() {
 		this.stop();
 		this.started = false;
-		AppState.addEventListener('change', this._handleAppStateChange.bind(this));
+		AppState.removeEventListener('change', this._handleAppStateChange.bind(this));
 	}
 
 	_handleAppStateChange(appState) {

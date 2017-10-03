@@ -1,6 +1,6 @@
 {
   "name": "react-native-static-server",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "repository": "https://github.com/futurepress/react-native-static-server",
   "description": "HTTP static file server for React Native",
   "main": "index.js",
