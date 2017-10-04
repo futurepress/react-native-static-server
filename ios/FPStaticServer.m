@@ -15,6 +15,15 @@ RCT_EXPORT_MODULE();
     return self;
 }
 
+- (void)dealloc {
+    
+    if(_webServer.isRunning == YES) {
+        [_webServer stop];
+    }
+    _webServer = nil;
+
+}
+
 - (dispatch_queue_t)methodQueue
 {
     return dispatch_queue_create("com.futurepress.staticserver", DISPATCH_QUEUE_SERIAL);
@@ -108,7 +117,6 @@ RCT_EXPORT_METHOD(stop) {
     if(_webServer.isRunning == YES) {
         
         [_webServer stop];
-//        _webServer = nil;
 
         NSLog(@"StaticServer stopped");
     }
