@@ -10,7 +10,7 @@
   "keywords": ["react-native"],
   "author": "fchasen@gmail.com",
   "license": "MIT",
-  "peerDependencies": {
+  "devDependencies": {
     "react-native": "^0.49.0"
   }
 }
