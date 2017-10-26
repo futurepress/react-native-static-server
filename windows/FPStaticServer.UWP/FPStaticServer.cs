@@ -32,13 +32,13 @@ namespace FPStaticServer
         public async void start(int port, string root, bool localOnly, bool keepAlive)
         {
             this.port = port;
-            this.www_root = root;
+            this.www_root = root.Replace('/', '\\');
             this.localhost_only = localOnly;
             this.keep_alive = keepAlive;
 
             var configuration = new HttpServerConfiguration()
               .ListenOnPort(port)
-              .RegisterRoute(new StaticFileRouteHandler(root))
+              .RegisterRoute(new StaticFileRouteHandler(www_root))
               .EnableCors();
 
             server = new HttpServer(configuration);
@@ -50,6 +50,31 @@ namespace FPStaticServer
         public void stop()
         {
             server.StopServer();
+        }
+
+        public override void OnReactInstanceDispose()
+        {
+            base.OnReactInstanceDispose();
+            if (server != null)
+                server.StopServer();
+        }
+
+        public void OnDestroy()
+        {
+            if (server != null)
+                server.StopServer();
+        }
+
+        public async void OnResume()
+        {
+            if (server != null)
+                await server.StartServerAsync();
+        }
+
+        public void OnSuspend()
+        {
+            if (server != null)
+                server.StopServer();
         }
     }
 }
