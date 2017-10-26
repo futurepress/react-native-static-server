@@ -40,9 +40,11 @@ A cross platform component for serving static assets with React Native.
 
 1. In Visual Studio, in the solution explorer, right click `Solution  [your project's name]` ➜ `Add` ➜ `Existing project...`
 2. Go to `node_modules` ➜ `react-native-static-server` and add `FPStaticServer.UWP.csproj`
-3. In your main project, right click `References` ➜ `Add reference...`
-4. In the left menu, select `Projects > Solution` and tick `FPStaticServer.UWP`. Press `OK` to confirm
-5. In your main project, open `MainPage.cs` (or whatever `ReactPage` you load) and modify your `Packages` override:
+3. In your freshly imported `FPStaticServer.UWP` project, right click `References` ➜ `Add reference...`
+4. In the left menu, select `Projects > Solution` and tick `ReactNative`. Press `OK` to confirm
+5. In your main project, right click `References` ➜ `Add reference...`
+6. In the left menu, select `Projects > Solution` and tick `FPStaticServer.UWP`. Press `OK` to confirm
+7. In your main project, open `MainPage.cs` (or whatever `ReactPage` you load) and modify your `Packages` override:
 	```csharp
 	using FPStaticServer;
 	// ... inside MainPage class
