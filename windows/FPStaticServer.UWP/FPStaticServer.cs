@@ -49,20 +49,19 @@ namespace FPStaticServer
         [ReactMethod]
         public void stop()
         {
-            server.StopServer();
+            if (server != null)
+                server.StopServer();
         }
 
         public override void OnReactInstanceDispose()
         {
             base.OnReactInstanceDispose();
-            if (server != null)
-                server.StopServer();
+            stop();
         }
 
         public void OnDestroy()
         {
-            if (server != null)
-                server.StopServer();
+            stop();
         }
 
         public async void OnResume()
@@ -73,8 +72,7 @@ namespace FPStaticServer
 
         public void OnSuspend()
         {
-            if (server != null)
-                server.StopServer();
+            stop();
         }
     }
 }
