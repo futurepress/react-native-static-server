@@ -93,6 +93,7 @@ RCT_EXPORT_METHOD(start: (NSString *)port
     
     if (self.keep_alive == YES) {
         [options setObject:@(NO) forKey:GCDWebServerOption_AutomaticallySuspendInBackground];
+        [options setObject:@2.0 forKey:GCDWebServerOption_ConnectedStateCoalescingInterval];
     }
     
 

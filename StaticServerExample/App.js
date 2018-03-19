@@ -50,7 +50,7 @@ export default class App extends Component<Props> {
 
     download.promise.then(() => {
       // Create a StaticServer at a random port
-      this.server = new StaticServer(this.port, this.root, {localOnly: true});
+      this.server = new StaticServer(this.port, this.root, {localOnly: true, keepAlive: true});
 
       return this.server.start().then((origin) => {
         this.setState({origin});
