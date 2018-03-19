@@ -1,6 +1,6 @@
 {
   "name": "react-native-static-server",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "repository": "https://github.com/futurepress/react-native-static-server",
   "description": "HTTP static file server for React Native",
   "main": "index.js",
@@ -11,8 +11,5 @@
     "react-native"
   ],
   "author": "fchasen@gmail.com",
-  "license": "MIT",
-  "peerDependencies": {
-    "react-native": "^0.47.1"
-  }
+  "license": "MIT"
 }

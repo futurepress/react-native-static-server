@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <title>React Native Static Server</title>
+  <style>
+    body {
+      margin: 0 20px;
+			align-items: center;
+		  justify-content: center;
+			display: flex;
+			height: 100vh;
+    }
+
+		#hello {
+			flex: 1;
+			text-align: center;
+			background: #ccc;
+			padding: 40px;
+		}
+
+		#location {
+			font-weight: bold;
+		}
+  </style>
+</head>
+<body>
+	<div id="hello">
+		Hello from <span id="location"></span>
+	</div>
+	<script>
+		var loc = document.getElementById("location");
+		loc.innerHTML = window.location.href;
+	</script>
+</body>
+</html>
