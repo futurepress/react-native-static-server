@@ -123,6 +123,14 @@ RCT_EXPORT_METHOD(stop) {
     }
 }
 
+RCT_EXPORT_METHOD(origin:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject) {
+    if(_webServer.isRunning == YES) {
+        resolve(self.url);
+    } else {
+        resolve(@"");
+    }
+}
 
 @end
 
