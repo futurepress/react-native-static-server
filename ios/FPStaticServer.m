@@ -132,5 +132,10 @@ RCT_EXPORT_METHOD(origin:(RCTPromiseResolveBlock)resolve
     }
 }
 
++ (BOOL)requiresMainQueueSetup
+{
+    return YES;
+}
+
 @end
 
