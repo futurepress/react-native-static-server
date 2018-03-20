@@ -12,6 +12,7 @@ import {
   View,
   WebView,
   Image,
+  NativeModules
 } from 'react-native';
 
 import StaticServer from 'react-native-static-server';
@@ -31,30 +32,47 @@ export default class App extends Component<Props> {
   componentWillMount() {
     this.port = this.props.port || 3030;
     this.root = this.props.root || "www/";
-    this.file = this.props.file || './index.html';
+    this.file = this.props.file || 'index.html';
 
     // Get HTML file from require
     let html = require('./index.html');
     let {uri} = Image.resolveAssetSource(html);
 
-    let path = RNFS.DocumentDirectoryPath + '/www';
+    let path = RNFS.DocumentDirectoryPath + "/" + this.root;
+    let dest = path + this.file;
 
     // Add the directory
     RNFS.mkdir(path, { NSURLIsExcludedFromBackupKey: true });
 
     // Fetch the file
-    let download = RNFS.downloadFile({
-      fromUrl: uri,
-      toFile: path + "/index.html"
-    })
+    let added;
 
-    download.promise.then(() => {
+    if (uri.indexOf("file://") > -1) {
+      // Copy file in release
+      added =  RNFS.exists(dest).then((e) => {
+        if (!e) {
+          return RNFS.copyFile(uri, dest);
+        }
+      });
+    } else {
+      // Download for development
+      let download = RNFS.downloadFile({
+        fromUrl: uri,
+        toFile: dest
+      });
+      added = download.promise;
+    }
+
+
+    added.then(() => {
       // Create a StaticServer at port 3030
-      this.server = new StaticServer(this.port, this.root, {localOnly: true, keepAlive: true});
+      this.server = new StaticServer(this.port, this.root, {localOnly: true});
 
-      return this.server.start().then((origin) => {
+      this.server.start().then((origin) => {
         this.setState({origin});
       });
+    }).catch((err) => {
+      console.error(err);
     })
 
   }
@@ -77,7 +95,7 @@ export default class App extends Component<Props> {
 
     return (
       <WebView
-        source={{uri: `${this.state.origin}/index.html`}}
+        source={{uri: `${this.state.origin}/${this.file}`}}
         style={styles.webview}
       />
     );

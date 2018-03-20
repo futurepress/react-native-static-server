@@ -100,11 +100,14 @@ RCT_EXPORT_METHOD(start: (NSString *)port
     if([_webServer startWithOptions:options error:&error]) {
         NSNumber *listenPort = [NSNumber numberWithUnsignedInteger:_webServer.port];
         self.port = listenPort;
-        self.url = [NSString stringWithFormat: @"%@://%@:%@", [_webServer.serverURL scheme], [_webServer.serverURL host], [_webServer.serverURL port]];
-        NSLog(@"Started StaticServer at URL %@", self.url);
 
-        resolve(self.url);
-        
+        if(_webServer.serverURL == NULL) {
+            reject(@"server_error", @"StaticServer could not start", error);
+        } else {
+            self.url = [NSString stringWithFormat: @"%@://%@:%@", [_webServer.serverURL scheme], [_webServer.serverURL host], [_webServer.serverURL port]];
+            NSLog(@"Started StaticServer at URL %@", self.url);
+            resolve(self.url);
+        }
     } else {
         NSLog(@"Error starting StaticServer: %@", error);
         
