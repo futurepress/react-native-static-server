@@ -29,7 +29,7 @@ export default class App extends Component<Props> {
   }
 
   componentWillMount() {
-    this.port = this.props.port || 0;
+    this.port = this.props.port || 3030;
     this.root = this.props.root || "www/";
     this.file = this.props.file || './index.html';
 
@@ -49,7 +49,7 @@ export default class App extends Component<Props> {
     })
 
     download.promise.then(() => {
-      // Create a StaticServer at a random port
+      // Create a StaticServer at port 3030
       this.server = new StaticServer(this.port, this.root, {localOnly: true, keepAlive: true});
 
       return this.server.start().then((origin) => {

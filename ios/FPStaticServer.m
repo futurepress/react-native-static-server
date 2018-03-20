@@ -68,8 +68,8 @@ RCT_EXPORT_METHOD(start: (NSString *)port
     self.localhost_only = localhost_only;
     
     if(_webServer.isRunning != NO) {
-        NSError *error = nil;
-        reject(@"server_error", @"StaticServer is already up", error);
+        NSLog(@"StaticServer already running at %@", self.url);
+        resolve(self.url);
         return;
     }
     

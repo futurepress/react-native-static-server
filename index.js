@@ -58,7 +58,9 @@ class StaticServer {
 
 	start() {
 		if( this.running ){
-			return console.warn('StaticServer already running');
+			return new new Promise((resolve, reject) => {
+				resolve(this.origin);
+			});
 		}
 
 		this.started = true;
@@ -76,10 +78,6 @@ class StaticServer {
 	}
 
 	stop() {
-		if( !this.running ){
-			return console.warn('StaticServer not running');
-		}
-
 		this.running = false;
 
 		return FPStaticServer.stop();
