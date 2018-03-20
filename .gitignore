@@ -47,3 +47,6 @@ node_modules
 # Test generated files
 /ReactAndroid/src/androidTest/assets/AndroidTestBundle.js
 *.js.meta
+
+my-release-key.keystore
+StaticServerExample/my-release-key.keystore
