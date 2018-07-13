@@ -95,7 +95,7 @@ public class FPStaticServerModule extends ReactContextBaseJavaModule implements 
       }
     }
 
-    if(root != null && (root.startsWith("/") || root.startsWith("file:///")) {
+    if(root != null && (root.startsWith("/") || root.startsWith("file:///"))) {
       www_root = new File(root);
       localPath = www_root.getAbsolutePath();
     } else {
