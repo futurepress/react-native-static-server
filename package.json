@@ -5,7 +5,8 @@
   "description": "HTTP static file server for React Native",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "local": "wml add ./ ./node_modules/react-native-static-server && wml start"
   },
   "keywords": [
     "react-native"
