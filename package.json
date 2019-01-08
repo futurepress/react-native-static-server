@@ -6,11 +6,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "local": "wml add ./ ./node_modules/react-native-static-server && wml start"
+    "local": "./node_modules/.bin/wml add ./ ./node_modules/react-native-static-server && ./node_modules/.bin/wml start"
   },
   "keywords": [
     "react-native"
   ],
   "author": "fchasen@gmail.com",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "wml": "0.0.83"
+  }
 }
