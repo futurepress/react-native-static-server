@@ -1,9 +1,17 @@
+# OSX
+#
+.DS_Store
+
+# node.js
+#
+node_modules/
+npm-debug.log
+yarn-error.log
+
+
 # Xcode
-!**/*.xcodeproj
-!**/*.pbxproj
-!**/*.xcworkspacedata
-!**/*.xcsettings
-!**/*.xcscheme
+#
+build/
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -21,28 +29,19 @@ DerivedData
 *.xcuserstate
 project.xcworkspace
 
-# Gradle
-/build/
-android/build/
 
-# Buck
-.buckd
-buck-out
-
-
-# Android
+# Android/IntelliJ
+#
+build/
 .idea
 .gradle
 local.properties
 *.iml
 
-# Node
-node_modules
-*.log
-.nvm
-
-# OS X
-.DS_Store
+# BUCK
+buck-out/
+\.buckd/
+*.keystore
 
 # Test generated files
 /ReactAndroid/src/androidTest/assets/AndroidTestBundle.js
