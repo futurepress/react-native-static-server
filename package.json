@@ -2,6 +2,7 @@
   "name": "react-native-static-server",
   "version": "0.3.0",
   "repository": "https://github.com/futurepress/react-native-static-server",
+  "title": "React Native Static Server",
   "description": "HTTP static file server for React Native",
   "main": "index.js",
   "scripts": {
@@ -13,7 +14,15 @@
   ],
   "author": "fchasen@gmail.com",
   "license": "MIT",
+  "peerDependencies": {
+    "react": "16.2.0",
+    "react-native": "^0.52.0",
+    "react-native-windows": "0.52.0"
+  },
   "devDependencies": {
+    "react": "16.2.0",
+    "react-native": "^0.52.0",
+    "react-native-windows": "0.52.0",
     "wml": "0.0.83"
   }
 }
