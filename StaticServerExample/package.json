@@ -5,13 +5,14 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "postinstall": "node ../scripts/examples_postinstall.js node_modules/react-native-static-server"
+    "preinstall": "npm pack ../ && mv react-native-static-server-*.tgz react-native-static-server.tgz",
+    "postinstall": "rm react-native-static-server.tgz"
   },
   "dependencies": {
     "react": "16.6.3",
     "react-native": "0.57.8",
     "react-native-fs": "^2.13.3",
-    "react-native-static-server": "file:../"
+    "react-native-static-server": "./react-native-static-server.tgz"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",

@@ -1,13 +1,12 @@
 {
   "name": "react-native-static-server",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "repository": "https://github.com/futurepress/react-native-static-server",
   "title": "React Native Static Server",
   "description": "HTTP static file server for React Native",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "local": "./node_modules/.bin/wml add ./ ./node_modules/react-native-static-server && ./node_modules/.bin/wml start"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "react-native"
@@ -22,7 +21,11 @@
   "devDependencies": {
     "react": "16.2.0",
     "react-native": "^0.52.0",
-    "react-native-windows": "0.52.0",
-    "wml": "0.0.83"
-  }
+    "react-native-windows": "0.52.0"
+  },
+  "files": [
+    "android",
+    "ios",
+    "index.js"
+  ]
 }
