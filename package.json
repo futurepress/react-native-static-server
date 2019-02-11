@@ -26,6 +26,7 @@
   "files": [
     "android",
     "ios",
-    "index.js"
+    "index.js",
+    "react-native-static-server.podspec"
   ]
 }
