@@ -11,6 +11,84 @@ A cross platform component for serving static assets with React Native.
 
 `$ react-native link react-native-static-server`
 
+## Linking
+
+### Automatically (Recommend)
+
+````bash
+react-native link react-native-static-server
+````
+
+### Manually
+
+#### iOS
+
+Refer to the [official guide](https://facebook.github.io/react-native/docs/linking-libraries-ios.html)
+
+Link `libFPStaticServer.a` as stated in the official RN guide.
+
+![alt Link libFPStaticServer.a as stated in the official RN docs](https://user-images.githubusercontent.com/1566400/40619974-b5c538c6-625c-11e8-9742-309255a311aa.png)
+
+#### Android
+
+* Edit `android/app/src/main/java/com/munisight/MainApplication.java` to look like this (without the +):
+
+  ```diff
+   import com.corbt.keepawake.KCKeepAwakePackage;
+  + import com.futurepress.staticserver.FPStaticServerPackage;
+
+  import java.util.Arrays;
+  import java.util.List;
+
+  public class MainApplication extends Application implements ReactApplication {
+
+    private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+        ...
+
+        @Override
+        protected List<ReactPackage> getPackages() {
+            return Arrays.<ReactPackage>asList(
+                    new MainReactPackage(),
+                    new KCKeepAwakePackage(),
+  +                 new FPStaticServerPackage()
+            );
+        }
+
+        ...
+    };
+
+    ...
+  }
+  ```
+
+* Edit `android/settings.gradle` to look like this (without the +):
+
+  ```diff
+  rootProject.name = 'MyApp'
+
+  include ':app'
+
+  + include ':react-native-static-server'
+  + project(':react-native-static-server').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-static-server/android')
+  ```
+
+* Edit `android/app/build.gradle` (note: **app** folder) to look like this:
+
+  ```diff
+  apply plugin: 'com.android.application'
+
+  android {
+    ...
+  }
+
+  dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:23.0.0'
+    compile 'com.facebook.react:react-native:0.16.+'
+  + compile project(':react-native-static-server')
+  }
+  ```
+
 ## Usage
 
 Declare the `StaticServer` with a port or use the default `0` to pick a random available port.
