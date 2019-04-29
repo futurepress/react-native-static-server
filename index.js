@@ -112,6 +112,15 @@ class StaticServer {
 		return this._origin;
 	}
 
+	isRunning() {
+		return FPStaticServer.isRunning()
+			.then(running => {
+				this.running = running;
+
+				return this.running;
+			})
+	}
+
 }
 
 export default StaticServer;
