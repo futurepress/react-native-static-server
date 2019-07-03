@@ -14,14 +14,14 @@
   "author": "fchasen@gmail.com",
   "license": "MIT",
   "peerDependencies": {
-    "react": "16.2.0",
-    "react-native": "^0.52.0",
-    "react-native-windows": "0.52.0"
+    "react": "16.8.6",
+    "react-native": "^0.59.10",
+    "react-native-windows": "0.57.2"
   },
   "devDependencies": {
-    "react": "16.2.0",
-    "react-native": "^0.52.0",
-    "react-native-windows": "0.52.0"
+    "react": "16.8.6",
+    "react-native": "^0.59.10",
+    "react-native-windows": "0.57.2"
   },
   "files": [
     "android",
