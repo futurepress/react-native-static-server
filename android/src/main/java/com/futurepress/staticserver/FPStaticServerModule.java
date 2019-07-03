@@ -177,6 +177,11 @@ public class FPStaticServerModule extends ReactContextBaseJavaModule implements 
     }
   }
 
+  @ReactMethod
+  public void isRunning(Promise promise) {
+    promise.resolve(server != null && server.isAlive());
+  }
+
   /* Shut down the server if app is destroyed or paused */
   @Override
   public void onHostResume() {

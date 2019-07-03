@@ -8,7 +8,7 @@ RCT_EXPORT_MODULE();
 
 - (instancetype)init {
     if((self = [super init])) {
-        
+
         [GCDWebServer self];
         _webServer = [[GCDWebServer alloc] init];
     }
@@ -16,7 +16,7 @@ RCT_EXPORT_MODULE();
 }
 
 - (void)dealloc {
-    
+
     if(_webServer.isRunning == YES) {
         [_webServer stop];
     }
@@ -36,9 +36,9 @@ RCT_EXPORT_METHOD(start: (NSString *)port
                   keepAlive:(BOOL *)keep_alive
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject) {
-    
+
     NSString * root;
-    
+
     if( [optroot isEqualToString:@"DocumentDir"] ){
         root = [NSString stringWithFormat:@"%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] ];
     } else if( [optroot isEqualToString:@"BundleDir"] ){
@@ -48,8 +48,8 @@ RCT_EXPORT_METHOD(start: (NSString *)port
     } else {
         root = [NSString stringWithFormat:@"%@/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], optroot ];
     }
-    
-    
+
+
     if(root && [root length] > 0) {
         self.www_root = root;
     }
@@ -61,26 +61,26 @@ RCT_EXPORT_METHOD(start: (NSString *)port
     } else {
         self.port = [NSNumber numberWithInt:-1];
     }
-        
-    
+
+
     self.keep_alive = keep_alive;
 
     self.localhost_only = localhost_only;
-    
+
     if(_webServer.isRunning != NO) {
         NSLog(@"StaticServer already running at %@", self.url);
         resolve(self.url);
         return;
     }
-    
+
     [_webServer addGETHandlerForBasePath:@"/" directoryPath:self.www_root indexFilename:@"index.html" cacheAge:3600 allowRangeRequests:YES];
-    
+
     NSError *error;
     NSMutableDictionary* options = [NSMutableDictionary dictionary];
-    
-    
+
+
     NSLog(@"Started StaticServer on port %@", self.port);
-    
+
     if (![self.port isEqualToNumber:[NSNumber numberWithInt:-1]]) {
         [options setObject:self.port forKey:GCDWebServerOption_Port];
     } else {
@@ -90,12 +90,12 @@ RCT_EXPORT_METHOD(start: (NSString *)port
     if (self.localhost_only == YES) {
         [options setObject:@(YES) forKey:GCDWebServerOption_BindToLocalhost];
     }
-    
+
     if (self.keep_alive == YES) {
         [options setObject:@(NO) forKey:GCDWebServerOption_AutomaticallySuspendInBackground];
         [options setObject:@2.0 forKey:GCDWebServerOption_ConnectedStateCoalescingInterval];
     }
-    
+
 
     if([_webServer startWithOptions:options error:&error]) {
         NSNumber *listenPort = [NSNumber numberWithUnsignedInteger:_webServer.port];
@@ -110,16 +110,16 @@ RCT_EXPORT_METHOD(start: (NSString *)port
         }
     } else {
         NSLog(@"Error starting StaticServer: %@", error);
-        
+
         reject(@"server_error", @"StaticServer could not start", error);
-        
+
     }
-    
+
 }
 
 RCT_EXPORT_METHOD(stop) {
     if(_webServer.isRunning == YES) {
-        
+
         [_webServer stop];
 
         NSLog(@"StaticServer stopped");
@@ -135,10 +135,15 @@ RCT_EXPORT_METHOD(origin:(RCTPromiseResolveBlock)resolve
     }
 }
 
+RCT_EXPORT_METHOD(isRunning:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject) {
+    bool isRunning = _webServer != nil &&_webServer.isRunning == YES;
+    resolve(@(isRunning));
+}
+
 + (BOOL)requiresMainQueueSetup
 {
     return YES;
 }
 
 @end
-
