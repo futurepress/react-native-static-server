@@ -58,7 +58,7 @@ class StaticServer {
 
 	start() {
 		if( this.running ){
-			return new new Promise((resolve, reject) => {
+			return new Promise((resolve, reject) => {
 				resolve(this.origin);
 			});
 		}
