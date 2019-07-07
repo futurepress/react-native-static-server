@@ -52,4 +52,5 @@ buck-out/
 */fastlane/Preview.html
 */fastlane/screenshots
 
-my-release-key.keystore
+# Bundle artifact
+*.jsbundle

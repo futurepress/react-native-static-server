@@ -10,13 +10,13 @@ import {
   StyleSheet,
   Text,
   View,
-  WebView,
   Image,
   NativeModules
 } from 'react-native';
 
 import StaticServer from 'react-native-static-server';
-import RNFS from 'react-native-fs';
+import RNFetchBlob from "rn-fetch-blob";
+import { WebView } from 'react-native-webview';
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -38,29 +38,32 @@ export default class App extends Component<Props> {
     let html = require('./index.html');
     let {uri} = Image.resolveAssetSource(html);
 
-    let path = RNFS.DocumentDirectoryPath + "/" + this.root;
+    let path = RNFetchBlob.fs.dirs.DocumentDir + "/" + this.root;
     let dest = path + this.file;
 
     // Add the directory
-    RNFS.mkdir(path, { NSURLIsExcludedFromBackupKey: true });
+    RNFetchBlob.fs.mkdir(path, { NSURLIsExcludedFromBackupKey: true });
 
     // Fetch the file
     let added;
 
     if (uri.indexOf("file://") > -1) {
       // Copy file in release
-      added =  RNFS.exists(dest).then((e) => {
+      added =  RNFetchBlob.fs.exists(dest).then((e) => {
         if (!e) {
-          return RNFS.copyFile(uri, dest);
+          return RNFetchBlob.fs.cp(uri, dest);
         }
       });
     } else {
       // Download for development
-      let download = RNFS.downloadFile({
-        fromUrl: uri,
-        toFile: dest
-      });
-      added = download.promise;
+      added = RNFetchBlob
+        .config({
+          fileCache : true,
+        })
+        .fetch('GET', uri)
+        .then((res) => {
+          return RNFetchBlob.fs.mv(res.path(), dest);
+        })
     }
 
 
