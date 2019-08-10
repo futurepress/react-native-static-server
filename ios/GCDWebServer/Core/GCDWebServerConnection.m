@@ -750,6 +750,11 @@ static inline NSUInteger _ScanHexNumber(const void* bytes, NSUInteger size) {
       [response setValue:[NSString stringWithFormat:@"Digest realm=\"%@\", nonce=\"%@\"%@", _server.authenticationRealm, _digestAuthenticationNonce, isStaled ? @", stale=TRUE" : @""] forAdditionalHeader:@"WWW-Authenticate"];  // TODO: Support Quality of Protection ("qop")
     }
   }
+
+  [response setValue:@"GET" forAdditionalHeader:@"Access-Control-Request-Method"];
+  [response setValue:@"OriginX-Requested-With, Content-Type, Accept, Cache-Control, Range,Access-Control-Allow-Origin"  forAdditionalHeader:@"Access-Control-Request-Headers"];
+  [response setValue: @"*" forAdditionalHeader:@"Access-Control-Allow-Origin"];
+
   return response;
 }
 
@@ -784,9 +789,22 @@ static inline BOOL _CompareResources(NSString* responseETag, NSString* requestET
     newResponse.cacheControlMaxAge = response.cacheControlMaxAge;
     newResponse.lastModifiedDate = response.lastModifiedDate;
     newResponse.eTag = response.eTag;
+      
+    [newResponse setValue:@"GET" forAdditionalHeader:@"Access-Control-Request-Method"];
+    [newResponse setValue:@"OriginX-Requested-With, Content-Type, Accept, Cache-Control, Range,Access-Control-Allow-Origin"  forAdditionalHeader:@"Access-Control-Request-Headers"];
+    [newResponse setValue: @"*" forAdditionalHeader:@"Access-Control-Allow-Origin"];
+
     GWS_DCHECK(newResponse);
+
     return newResponse;
   }
+    
+    [response setValue:@"GET" forAdditionalHeader:@"Access-Control-Request-Method"];
+    [response setValue:@"OriginX-Requested-With, Content-Type, Accept, Cache-Control, Range,Access-Control-Allow-Origin"  forAdditionalHeader:@"Access-Control-Request-Headers"];
+    [response setValue: @"*" forAdditionalHeader:@"Access-Control-Allow-Origin"];
+
+  GWS_DCHECK(response);
+
   return response;
 }
 
