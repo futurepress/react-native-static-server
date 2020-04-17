@@ -2,6 +2,9 @@
 
 // GCDWebServer: https://github.com/swisspol/GCDWebServer
 #import "GCDWebServer.h"
+#import "GCDWebServerFunctions.h"
+#import "GCDWebServerFileResponse.h"
+#import "GCDWebServerHTTPStatusCodes.h"
 
 @interface FPStaticServer : NSObject <RCTBridgeModule> {
     GCDWebServer* _webServer;

@@ -24,6 +24,7 @@ interface ITestViewProps {
   port?: number
   root?: string
   file?: string
+  target?: any
 }
 
 export default function App (props: ITestViewProps): JSX.Element {
@@ -32,11 +33,12 @@ export default function App (props: ITestViewProps): JSX.Element {
   const port = typeof props.port !== 'undefined' ? props.port : 3030
   const root = typeof props.root !== 'undefined' ? props.root : 'www/'
   const file = typeof props.file !== 'undefined' ? props.file : 'index.html'
+  const target = typeof props.target !== 'undefined' ? props.target : require('./index.html')
 
   useEffect(() => {
     if (origin === '') {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const index = require('./index.html')
+      const index = target
       const { uri } = Image.resolveAssetSource(index)
       const path = RNFetchBlob.fs.dirs.DocumentDir + '/' + root
       const dest = path + file
