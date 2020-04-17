@@ -1,7 +1,11 @@
 {
   "name": "react-native-static-server",
   "version": "0.4.2",
-  "repository": "https://github.com/futurepress/react-native-static-server",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/futurepress/react-native-static-server.git",
+    "baseUrl": "https://github.com/futurepress/react-native-static-server"
+  },
   "homepage": "https://github.com/futurepress/react-native-static-server",
   "title": "React Native Static Server",
   "description": "HTTP static file server for React Native",
@@ -12,8 +16,13 @@
   "keywords": [
     "react-native"
   ],
-  "author": "fchasen@gmail.com",
+  "author": {
+    "name": "Fred Chasen",
+    "email": "fchasen@gmail.com"
+  },
   "license": "MIT",
+  "licenseFilename": "LICENSE",
+  "readmeFilename": "README.md",
   "peerDependencies": {
     "react": "^16.8.1",
     "react-native": ">=0.60.0-rc.0 <1.0.x"

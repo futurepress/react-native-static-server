@@ -14,13 +14,16 @@ import {
   NativeModules
 } from 'react-native';
 
+// requires react-native-webview, see: https://github.com/uuidjs/uuid#getrandomvalues-not-supported
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
 import StaticServer from 'react-native-static-server';
 import RNFetchBlob from "rn-fetch-blob";
 import { WebView } from 'react-native-webview';
 
 type Props = {};
 export default class App extends Component<Props> {
-
+  
   constructor(opts) {
     super();
 
@@ -29,7 +32,7 @@ export default class App extends Component<Props> {
     }
   }
 
-  componentWillMount() {
+  async componentWillMount() {
     this.port = this.props.port || 3030;
     this.root = this.props.root || "www/";
     this.file = this.props.file || 'index.html';
@@ -42,14 +45,17 @@ export default class App extends Component<Props> {
     let dest = path + this.file;
 
     // Add the directory
-    RNFetchBlob.fs.mkdir(path, { NSURLIsExcludedFromBackupKey: true });
-
+    try {
+      await RNFetchBlob.fs.mkdir(path, { NSURLIsExcludedFromBackupKey: true });
+    } catch (e) {
+      console.log(`directory is created ${path}`)
+    }
     // Fetch the file
     let added;
 
     if (uri.indexOf("file://") > -1) {
       // Copy file in release
-      added =  RNFetchBlob.fs.exists(dest).then((e) => {
+      added = RNFetchBlob.fs.exists(dest).then((e) => {
         if (!e) {
           return RNFetchBlob.fs.cp(uri, dest);
         }
@@ -66,7 +72,6 @@ export default class App extends Component<Props> {
         })
     }
 
-
     added.then(() => {
       // Create a StaticServer at port 3030
       this.server = new StaticServer(this.port, this.root, {localOnly: true});
@@ -75,7 +80,24 @@ export default class App extends Component<Props> {
         this.setState({origin});
       });
     }).catch((err) => {
-      console.error(err);
+      console.log(err);
+      RNFetchBlob.fs.exists(dest).then((e) => {
+        if (e) {
+          console.log('start')
+          this.server = new StaticServer(this.port, this.root, {localOnly: true});
+
+          this.server.start().then((origin) => {
+            console.log(origin)
+            this.setState({origin});
+          }).catch((e) => {
+            console.log(e);
+          });
+        } else {
+          console.error("File doesn't exist")
+        }
+      }).catch((e) => {
+        console.log(e)
+      })
     })
 
   }
