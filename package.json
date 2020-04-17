@@ -10,6 +10,7 @@
   "title": "React Native Static Server",
   "description": "HTTP static file server for React Native",
   "main": "index.js",
+  "typings": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
