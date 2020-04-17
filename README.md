@@ -9,6 +9,8 @@ A cross platform component for serving static assets with React Native.
 
 ### Installation
 
+From react-native 0.60 autolinking will take care of the link step but don't forget to run pod install
+
 `$ react-native link react-native-static-server`
 
 ## Usage
