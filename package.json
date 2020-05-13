@@ -1,6 +1,6 @@
 {
   "name": "react-native-static-server",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/futurepress/react-native-static-server.git",
