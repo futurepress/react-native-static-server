@@ -7,19 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3308A2ED1F8320B900A72E25 /* GCDWebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3308A2D01F8320B900A72E25 /* GCDWebServer.m */; };
-		3308A2EE1F8320B900A72E25 /* GCDWebServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3308A2D21F8320B900A72E25 /* GCDWebServerConnection.m */; };
-		3308A2EF1F8320B900A72E25 /* GCDWebServerFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3308A2D41F8320B900A72E25 /* GCDWebServerFunctions.m */; };
-		3308A2F01F8320B900A72E25 /* GCDWebServerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3308A2D81F8320B900A72E25 /* GCDWebServerRequest.m */; };
-		3308A2F11F8320B900A72E25 /* GCDWebServerResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 3308A2DA1F8320B900A72E25 /* GCDWebServerResponse.m */; };
-		3308A2F21F8320B900A72E25 /* GCDWebServerDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3308A2DD1F8320B900A72E25 /* GCDWebServerDataRequest.m */; };
-		3308A2F31F8320B900A72E25 /* GCDWebServerFileRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3308A2DF1F8320B900A72E25 /* GCDWebServerFileRequest.m */; };
-		3308A2F41F8320B900A72E25 /* GCDWebServerMultiPartFormRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3308A2E11F8320B900A72E25 /* GCDWebServerMultiPartFormRequest.m */; };
-		3308A2F51F8320B900A72E25 /* GCDWebServerURLEncodedFormRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3308A2E31F8320B900A72E25 /* GCDWebServerURLEncodedFormRequest.m */; };
-		3308A2F61F8320B900A72E25 /* GCDWebServerDataResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 3308A2E61F8320B900A72E25 /* GCDWebServerDataResponse.m */; };
-		3308A2F71F8320B900A72E25 /* GCDWebServerErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 3308A2E81F8320B900A72E25 /* GCDWebServerErrorResponse.m */; };
-		3308A2F81F8320B900A72E25 /* GCDWebServerFileResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 3308A2EA1F8320B900A72E25 /* GCDWebServerFileResponse.m */; };
-		3308A2F91F8320B900A72E25 /* GCDWebServerStreamedResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 3308A2EC1F8320B900A72E25 /* GCDWebServerStreamedResponse.m */; };
 		B3E7B58A1CC2AC0600A0062D /* FPStaticServer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* FPStaticServer.m */; };
 /* End PBXBuildFile section */
 
@@ -37,34 +24,6 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libFPStaticServer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFPStaticServer.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		3308A2CF1F8320B900A72E25 /* GCDWebServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServer.h; sourceTree = "<group>"; };
-		3308A2D01F8320B900A72E25 /* GCDWebServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServer.m; sourceTree = "<group>"; };
-		3308A2D11F8320B900A72E25 /* GCDWebServerConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerConnection.h; sourceTree = "<group>"; };
-		3308A2D21F8320B900A72E25 /* GCDWebServerConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerConnection.m; sourceTree = "<group>"; };
-		3308A2D31F8320B900A72E25 /* GCDWebServerFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerFunctions.h; sourceTree = "<group>"; };
-		3308A2D41F8320B900A72E25 /* GCDWebServerFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerFunctions.m; sourceTree = "<group>"; };
-		3308A2D51F8320B900A72E25 /* GCDWebServerHTTPStatusCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerHTTPStatusCodes.h; sourceTree = "<group>"; };
-		3308A2D61F8320B900A72E25 /* GCDWebServerPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerPrivate.h; sourceTree = "<group>"; };
-		3308A2D71F8320B900A72E25 /* GCDWebServerRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerRequest.h; sourceTree = "<group>"; };
-		3308A2D81F8320B900A72E25 /* GCDWebServerRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerRequest.m; sourceTree = "<group>"; };
-		3308A2D91F8320B900A72E25 /* GCDWebServerResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerResponse.h; sourceTree = "<group>"; };
-		3308A2DA1F8320B900A72E25 /* GCDWebServerResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerResponse.m; sourceTree = "<group>"; };
-		3308A2DC1F8320B900A72E25 /* GCDWebServerDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerDataRequest.h; sourceTree = "<group>"; };
-		3308A2DD1F8320B900A72E25 /* GCDWebServerDataRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerDataRequest.m; sourceTree = "<group>"; };
-		3308A2DE1F8320B900A72E25 /* GCDWebServerFileRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerFileRequest.h; sourceTree = "<group>"; };
-		3308A2DF1F8320B900A72E25 /* GCDWebServerFileRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerFileRequest.m; sourceTree = "<group>"; };
-		3308A2E01F8320B900A72E25 /* GCDWebServerMultiPartFormRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerMultiPartFormRequest.h; sourceTree = "<group>"; };
-		3308A2E11F8320B900A72E25 /* GCDWebServerMultiPartFormRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerMultiPartFormRequest.m; sourceTree = "<group>"; };
-		3308A2E21F8320B900A72E25 /* GCDWebServerURLEncodedFormRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerURLEncodedFormRequest.h; sourceTree = "<group>"; };
-		3308A2E31F8320B900A72E25 /* GCDWebServerURLEncodedFormRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerURLEncodedFormRequest.m; sourceTree = "<group>"; };
-		3308A2E51F8320B900A72E25 /* GCDWebServerDataResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerDataResponse.h; sourceTree = "<group>"; };
-		3308A2E61F8320B900A72E25 /* GCDWebServerDataResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerDataResponse.m; sourceTree = "<group>"; };
-		3308A2E71F8320B900A72E25 /* GCDWebServerErrorResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerErrorResponse.h; sourceTree = "<group>"; };
-		3308A2E81F8320B900A72E25 /* GCDWebServerErrorResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerErrorResponse.m; sourceTree = "<group>"; };
-		3308A2E91F8320B900A72E25 /* GCDWebServerFileResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerFileResponse.h; sourceTree = "<group>"; };
-		3308A2EA1F8320B900A72E25 /* GCDWebServerFileResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerFileResponse.m; sourceTree = "<group>"; };
-		3308A2EB1F8320B900A72E25 /* GCDWebServerStreamedResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerStreamedResponse.h; sourceTree = "<group>"; };
-		3308A2EC1F8320B900A72E25 /* GCDWebServerStreamedResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerStreamedResponse.m; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* FPStaticServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPStaticServer.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* FPStaticServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPStaticServer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,69 +47,9 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3308A2CD1F8320B900A72E25 /* GCDWebServer */ = {
-			isa = PBXGroup;
-			children = (
-				3308A2CE1F8320B900A72E25 /* Core */,
-				3308A2DB1F8320B900A72E25 /* Requests */,
-				3308A2E41F8320B900A72E25 /* Responses */,
-			);
-			path = GCDWebServer;
-			sourceTree = "<group>";
-		};
-		3308A2CE1F8320B900A72E25 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				3308A2CF1F8320B900A72E25 /* GCDWebServer.h */,
-				3308A2D01F8320B900A72E25 /* GCDWebServer.m */,
-				3308A2D11F8320B900A72E25 /* GCDWebServerConnection.h */,
-				3308A2D21F8320B900A72E25 /* GCDWebServerConnection.m */,
-				3308A2D31F8320B900A72E25 /* GCDWebServerFunctions.h */,
-				3308A2D41F8320B900A72E25 /* GCDWebServerFunctions.m */,
-				3308A2D51F8320B900A72E25 /* GCDWebServerHTTPStatusCodes.h */,
-				3308A2D61F8320B900A72E25 /* GCDWebServerPrivate.h */,
-				3308A2D71F8320B900A72E25 /* GCDWebServerRequest.h */,
-				3308A2D81F8320B900A72E25 /* GCDWebServerRequest.m */,
-				3308A2D91F8320B900A72E25 /* GCDWebServerResponse.h */,
-				3308A2DA1F8320B900A72E25 /* GCDWebServerResponse.m */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		3308A2DB1F8320B900A72E25 /* Requests */ = {
-			isa = PBXGroup;
-			children = (
-				3308A2DC1F8320B900A72E25 /* GCDWebServerDataRequest.h */,
-				3308A2DD1F8320B900A72E25 /* GCDWebServerDataRequest.m */,
-				3308A2DE1F8320B900A72E25 /* GCDWebServerFileRequest.h */,
-				3308A2DF1F8320B900A72E25 /* GCDWebServerFileRequest.m */,
-				3308A2E01F8320B900A72E25 /* GCDWebServerMultiPartFormRequest.h */,
-				3308A2E11F8320B900A72E25 /* GCDWebServerMultiPartFormRequest.m */,
-				3308A2E21F8320B900A72E25 /* GCDWebServerURLEncodedFormRequest.h */,
-				3308A2E31F8320B900A72E25 /* GCDWebServerURLEncodedFormRequest.m */,
-			);
-			path = Requests;
-			sourceTree = "<group>";
-		};
-		3308A2E41F8320B900A72E25 /* Responses */ = {
-			isa = PBXGroup;
-			children = (
-				3308A2E51F8320B900A72E25 /* GCDWebServerDataResponse.h */,
-				3308A2E61F8320B900A72E25 /* GCDWebServerDataResponse.m */,
-				3308A2E71F8320B900A72E25 /* GCDWebServerErrorResponse.h */,
-				3308A2E81F8320B900A72E25 /* GCDWebServerErrorResponse.m */,
-				3308A2E91F8320B900A72E25 /* GCDWebServerFileResponse.h */,
-				3308A2EA1F8320B900A72E25 /* GCDWebServerFileResponse.m */,
-				3308A2EB1F8320B900A72E25 /* GCDWebServerStreamedResponse.h */,
-				3308A2EC1F8320B900A72E25 /* GCDWebServerStreamedResponse.m */,
-			);
-			path = Responses;
-			sourceTree = "<group>";
-		};
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				3308A2CD1F8320B900A72E25 /* GCDWebServer */,
 				B3E7B5881CC2AC0600A0062D /* FPStaticServer.h */,
 				B3E7B5891CC2AC0600A0062D /* FPStaticServer.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
@@ -196,6 +95,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 58B511D21A9E6C8500147676;
@@ -214,19 +114,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3E7B58A1CC2AC0600A0062D /* FPStaticServer.m in Sources */,
-				3308A2F01F8320B900A72E25 /* GCDWebServerRequest.m in Sources */,
-				3308A2ED1F8320B900A72E25 /* GCDWebServer.m in Sources */,
-				3308A2F51F8320B900A72E25 /* GCDWebServerURLEncodedFormRequest.m in Sources */,
-				3308A2F41F8320B900A72E25 /* GCDWebServerMultiPartFormRequest.m in Sources */,
-				3308A2F61F8320B900A72E25 /* GCDWebServerDataResponse.m in Sources */,
-				3308A2F11F8320B900A72E25 /* GCDWebServerResponse.m in Sources */,
-				3308A2F91F8320B900A72E25 /* GCDWebServerStreamedResponse.m in Sources */,
-				3308A2F71F8320B900A72E25 /* GCDWebServerErrorResponse.m in Sources */,
-				3308A2F31F8320B900A72E25 /* GCDWebServerFileRequest.m in Sources */,
-				3308A2EF1F8320B900A72E25 /* GCDWebServerFunctions.m in Sources */,
-				3308A2EE1F8320B900A72E25 /* GCDWebServerConnection.m in Sources */,
-				3308A2F21F8320B900A72E25 /* GCDWebServerDataRequest.m in Sources */,
-				3308A2F81F8320B900A72E25 /* GCDWebServerFileResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -49,3 +49,9 @@ buck-out/
 
 my-release-key.keystore
 StaticServerExample/my-release-key.keystore
+
+# Android
+.classpath
+.project
+.settings/
+android/.project

@@ -73,7 +73,55 @@ RCT_EXPORT_METHOD(start: (NSString *)port
         return;
     }
 
-    [_webServer addGETHandlerForBasePath:@"/" directoryPath:self.www_root indexFilename:@"index.html" cacheAge:3600 allowRangeRequests:YES];
+    //[_webServer addGETHandlerForBasePath:@"/" directoryPath:self.www_root indexFilename:@"index.html" cacheAge:3600 allowRangeRequests:YES];
+    NSString *basePath = @"/";
+    NSString *directoryPath = self.www_root;
+    NSString *indexFilename = @"index.html";
+    NSUInteger cacheAge = 3600;
+    BOOL allowRangeRequests = YES;
+    [_webServer addHandlerWithMatchBlock:^GCDWebServerRequest*(NSString* requestMethod, NSURL* requestURL, NSDictionary<NSString*, NSString*>* requestHeaders, NSString* urlPath, NSDictionary<NSString*, NSString*>* urlQuery) {
+        if (![requestMethod isEqualToString:@"GET"]) {
+          return nil;
+        }
+        if (![urlPath hasPrefix:basePath]) {
+          return nil;
+        }
+        return [[GCDWebServerRequest alloc] initWithMethod:requestMethod url:requestURL headers:requestHeaders path:urlPath query:urlQuery];
+      }
+      processBlock:^GCDWebServerResponse*(GCDWebServerRequest* request) {
+        GCDWebServerResponse* response = nil;
+        NSString* filePath = [directoryPath stringByAppendingPathComponent:GCDWebServerNormalizePath([request.path substringFromIndex:basePath.length])];
+        NSString* fileType = [[[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:NULL] fileType];
+        if (fileType) {
+          if ([fileType isEqualToString:NSFileTypeDirectory]) {
+            if (indexFilename) {
+              NSString* indexPath = [filePath stringByAppendingPathComponent:indexFilename];
+              NSString* indexType = [[[NSFileManager defaultManager] attributesOfItemAtPath:indexPath error:NULL] fileType];
+              if ([indexType isEqualToString:NSFileTypeRegular]) {
+                response = [GCDWebServerFileResponse responseWithFile:indexPath];
+              }
+            } else {
+              response = [GCDWebServerResponse responseWithStatusCode:kGCDWebServerHTTPStatusCode_NotFound];
+            }
+          } else if ([fileType isEqualToString:NSFileTypeRegular]) {
+            if (allowRangeRequests) {
+              response = [GCDWebServerFileResponse responseWithFile:filePath byteRange:request.byteRange];
+              [response setValue:@"bytes" forAdditionalHeader:@"Accept-Ranges"];
+            } else {
+              response = [GCDWebServerFileResponse responseWithFile:filePath];
+            }
+          }
+        }
+        if (response) {
+          response.cacheControlMaxAge = cacheAge;
+          [response setValue:@"GET" forAdditionalHeader:@"Access-Control-Request-Method"];
+          [response setValue:@"OriginX-Requested-With, Content-Type, Accept, Cache-Control, Range,Access-Control-Allow-Origin"  forAdditionalHeader:@"Access-Control-Request-Headers"];
+          [response setValue: @"*" forAdditionalHeader:@"Access-Control-Allow-Origin"];
+        } else {
+          response = [GCDWebServerResponse responseWithStatusCode:kGCDWebServerHTTPStatusCode_NotFound];
+        }
+        return response;
+      }];
 
     NSError *error;
     NSMutableDictionary* options = [NSMutableDictionary dictionary];
