@@ -19,5 +19,5 @@ Pod::Spec.new do |s|
   s.source_files   = 'ios/*.{h,m}'
 
   s.dependency 'React'
-  s.dependency 'GCDWebServer'
+  s.dependency 'GCDWebServer', '~> 3.0'
 end
