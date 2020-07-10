@@ -32,6 +32,7 @@
     "android",
     "ios",
     "index.js",
+    "index.d.ts",
     "react-native-static-server.podspec"
   ]
 }
