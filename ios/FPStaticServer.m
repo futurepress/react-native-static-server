@@ -77,7 +77,7 @@ RCT_EXPORT_METHOD(start: (NSString *)port
     NSString *basePath = @"/";
     NSString *directoryPath = self.www_root;
     NSString *indexFilename = @"index.html";
-    NSUInteger cacheAge = 3600;
+    NSUInteger cacheAge = 0;
     BOOL allowRangeRequests = YES;
     [_webServer addHandlerWithMatchBlock:^GCDWebServerRequest*(NSString* requestMethod, NSURL* requestURL, NSDictionary<NSString*, NSString*>* requestHeaders, NSString* urlPath, NSDictionary<NSString*, NSString*>* urlQuery) {
         if (![requestMethod isEqualToString:@"GET"]) {
