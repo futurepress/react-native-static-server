@@ -70,10 +70,10 @@ class StaticServer {
 		}
 
 		return FPStaticServer.start(this.port, this.root, this.localOnly, this.keepAlive)
-			 .then((origin) => {
-			 	this._origin = origin;
-			 	return origin;
-			 });
+			.then((origin) => {
+				this._origin = origin;
+				return origin;
+			});
 	}
 
 	stop() {
