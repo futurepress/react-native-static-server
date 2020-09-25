@@ -12,11 +12,11 @@ declare module 'react-native-static-server' {
     localOnly: boolean
     keepAlive: boolean
     started: boolean
-    _origin?: string
 
     start: () => Promise<string>
     stop: () => Promise<any>
     isRunning: () => Promise<boolean>
+    getOrigin: () => Promise<string>
     kill: () => void
   }
 }
