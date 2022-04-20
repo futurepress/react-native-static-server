@@ -18,6 +18,7 @@ server.startUploader().then(uploaderUrl => console.log(uploaderUrl));
 
 1. 基于https://github.com/swisspol/GCDWebServer/blob/master/GCDWebUploader/GCDWebUploader.h 实现pc文件上传到ios里的功能。
 2. 文件会默认保存到app document目录下的`/uploader`文件夹里。
+3. 目前不支持Android
 
 ##### TODO list
 
