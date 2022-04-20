@@ -209,6 +209,7 @@
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
 				A132FC923873EBA164BAF33E /* [CP] Embed Pods Frameworks */,
+				3E523D20338741ECB90A7F79 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -231,6 +232,7 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				D75F995175E3DFB504FC3240 /* [CP] Embed Pods Frameworks */,
+				CA95C4EAA4FD1A020616CAFC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -390,6 +392,24 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
+		3E523D20338741ECB90A7F79 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-StaticServerExample-StaticServerExampleTests/Pods-StaticServerExample-StaticServerExampleTests-resources.sh",
+				"${PODS_ROOT}/GCDWebServer/GCDWebUploader/GCDWebUploader.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GCDWebUploader.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StaticServerExample-StaticServerExampleTests/Pods-StaticServerExample-StaticServerExampleTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		70128EDC205EDCB5F1122F99 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -428,6 +448,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StaticServerExample-StaticServerExampleTests/Pods-StaticServerExample-StaticServerExampleTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CA95C4EAA4FD1A020616CAFC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-StaticServerExample/Pods-StaticServerExample-resources.sh",
+				"${PODS_ROOT}/GCDWebServer/GCDWebUploader/GCDWebUploader.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GCDWebUploader.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StaticServerExample/Pods-StaticServerExample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D154B55232D78AA91BE854C3 /* [CP] Check Pods Manifest.lock */ = {

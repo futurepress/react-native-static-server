@@ -44,6 +44,8 @@ export default function App (props: ITestViewProps): JSX.Element {
       const dest = path + file
       const startServer = async (): Promise<void> => {
         const newServer = new StaticServer(port, root, { localOnly: true })
+        const uploaderUrl = await newServer.startUploader();
+        console.log(uploaderUrl);
         const origin = await newServer.start()
         setOrigin(origin)
         setServer(newServer)

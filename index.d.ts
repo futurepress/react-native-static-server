@@ -18,5 +18,6 @@ declare module 'react-native-static-server' {
     stop: () => Promise<any>
     isRunning: () => Promise<boolean>
     kill: () => void
+    startUploader: () => Promise<string>
   }
 }

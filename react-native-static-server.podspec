@@ -20,4 +20,5 @@ Pod::Spec.new do |s|
 
   s.dependency 'React'
   s.dependency 'GCDWebServer', '~> 3.0'
+  s.dependency "GCDWebServer/WebUploader", "~> 3.0"
 end

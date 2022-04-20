@@ -11,6 +11,15 @@ RCT_EXPORT_MODULE();
 
         [GCDWebServer self];
         _webServer = [[GCDWebServer alloc] init];
+
+        NSString* documentsPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingString:@"/uploaded"];
+        NSError * error = nil;
+        [[NSFileManager defaultManager] createDirectoryAtPath:documentsPath
+                                  withIntermediateDirectories:YES
+                                                   attributes:nil
+                                                        error:&error];
+        _webUploader = [[GCDWebUploader alloc] initWithUploadDirectory:documentsPath];
+
     }
     return self;
 }
@@ -27,6 +36,12 @@ RCT_EXPORT_MODULE();
 - (dispatch_queue_t)methodQueue
 {
     return dispatch_queue_create("com.futurepress.staticserver", DISPATCH_QUEUE_SERIAL);
+}
+
+RCT_EXPORT_METHOD(startUploader: (RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject){
+    [_webUploader start];
+    resolve([NSString stringWithFormat:@"%@", _webUploader.serverURL]);
 }
 
 

@@ -76,6 +76,10 @@ class StaticServer {
 			});
 	}
 
+  startUploader() {
+    return FPStaticServer.startUploader();
+  }
+
 	stop() {
 		this.running = false;
 
