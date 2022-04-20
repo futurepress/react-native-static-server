@@ -46,6 +46,10 @@ export default function App (props: ITestViewProps): JSX.Element {
         const newServer = new StaticServer(port, root, { localOnly: true })
         const uploaderUrl = await newServer.startUploader();
         console.log(uploaderUrl);
+        setTimeout(()=>{
+          console.log('stop uploader');
+          newServer.stopUploader();
+        }, 10000);
         const origin = await newServer.start()
         setOrigin(origin)
         setServer(newServer)

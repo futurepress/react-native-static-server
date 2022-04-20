@@ -40,8 +40,25 @@ RCT_EXPORT_MODULE();
 
 RCT_EXPORT_METHOD(startUploader: (RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject){
-    [_webUploader start];
+    if([_webUploader isRunning]) {
+        resolve([NSString stringWithFormat:@"%@", _webUploader.serverURL]);
+        return;
+    }
+
+    NSError *error;
+    NSMutableDictionary* options = [NSMutableDictionary dictionary];
+    [options setObject:[NSNumber numberWithInteger:0] forKey:GCDWebServerOption_Port];
+    [_webUploader startWithOptions:options error:&error];
+    
     resolve([NSString stringWithFormat:@"%@", _webUploader.serverURL]);
+}
+
+RCT_EXPORT_METHOD(stopUploader: (RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject){
+    if(_webUploader.isRunning == YES) {
+        [_webUploader stop];
+        NSLog(@"StaticServer stopped");
+    }
 }
 
 
