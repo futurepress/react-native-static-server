@@ -1,6 +1,7 @@
 {
   "name": "react-native-static-server",
-  "version": "0.5.1",
+  "version": "0.5.2",
+  "homepage": ".",
   "title": "React Native Static Server",
   "description": "HTTP static file server for React Native",
   "main": "index.js",
