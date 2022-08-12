@@ -98,17 +98,17 @@ RCT_EXPORT_METHOD(start: (NSString *)port
               NSString* indexPath = [filePath stringByAppendingPathComponent:indexFilename];
               NSString* indexType = [[[NSFileManager defaultManager] attributesOfItemAtPath:indexPath error:NULL] fileType];
               if ([indexType isEqualToString:NSFileTypeRegular]) {
-                response = [[GCDWebServerFileResponse alloc] initWithFile:indexPath byteRange:NSMakeRange(NSUIntegerMax, 0) isAttachment:NO mimeTypeOverrides:@{@"xml" : @"text/xml"}];
+                response = [GCDWebServerFileResponse responseWithFile:indexPath];
               }
             } else {
               response = [GCDWebServerResponse responseWithStatusCode:kGCDWebServerHTTPStatusCode_NotFound];
             }
           } else if ([fileType isEqualToString:NSFileTypeRegular]) {
             if (allowRangeRequests) {
-              response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:request.byteRange isAttachment:NO mimeTypeOverrides:@{@"xml" : @"text/xml"}] ;
+              response = [GCDWebServerFileResponse responseWithFile:filePath byteRange:request.byteRange];
               [response setValue:@"bytes" forAdditionalHeader:@"Accept-Ranges"];
             } else {
-              response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:NSMakeRange(NSUIntegerMax, 0) isAttachment:NO mimeTypeOverrides:@{@"xml" : @"text/xml"}];
+              response = [GCDWebServerFileResponse responseWithFile:filePath];
             }
           }
         }
