@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.license        = package['license']
   s.author         = package['author']['name']
   s.homepage       = package['homepage']
-  s.source         = { :git => 'https://github.com/futurepress/react-native-static-server.git' }
+  s.source         = { :git => 'https://github.com/benpham2509/react-native-static-server.git' }
 
   s.requires_arc   = true
   s.platform       = :ios, '7.0'
