@@ -104,12 +104,10 @@ RCT_EXPORT_METHOD(start: (NSString *)port
               response = [GCDWebServerResponse responseWithStatusCode:kGCDWebServerHTTPStatusCode_NotFound];
             }
           } else if ([fileType isEqualToString:NSFileTypeRegular]) {
-            if (allowRangeRequests) {
-              response = [GCDWebServerFileResponse responseWithFile:filePath byteRange:request.byteRange];
+           // always allow ranges in our requests
+              response = [GCDWebServerFileResponse initWithFile:filePath byteRange:request.byteRange isAttachment:attachment mimeTypeOverrides: "application/xml"] ;
               [response setValue:@"bytes" forAdditionalHeader:@"Accept-Ranges"];
-            } else {
-              response = [GCDWebServerFileResponse responseWithFile:filePath];
-            }
+            
           }
         }
         if (response) {
