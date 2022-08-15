@@ -98,17 +98,19 @@ RCT_EXPORT_METHOD(start: (NSString *)port
               NSString* indexPath = [filePath stringByAppendingPathComponent:indexFilename];
               NSString* indexType = [[[NSFileManager defaultManager] attributesOfItemAtPath:indexPath error:NULL] fileType];
               if ([indexType isEqualToString:NSFileTypeRegular]) {
-                      response = [[GCDWebServerFileResponse alloc] initWithFile:indexPath byteRange:NSMakeRange(NSUIntegerMax, 0) isAttachment:NO mimeTypeOverrides:@{@"xml" : @"application/xml", @"xml" : @"text/xml"}];
+                      response = [[GCDWebServerFileResponse alloc] initWithFile:indexPath byteRange:NSMakeRange(NSUIntegerMax, 0) isAttachment:NO mimeTypeOverrides:@{@"xml" : @"application/xml", @"xhtml" : @"application/xhtml"}];
+                       [response setValue:@"GETXYZ" forAdditionalHeader:@"Access-XYZ"];
               }
             } else {
               response = [GCDWebServerResponse responseWithStatusCode:kGCDWebServerHTTPStatusCode_NotFound];
             }
           } else if ([fileType isEqualToString:NSFileTypeRegular]) {
             if (allowRangeRequests) {
-              response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:request.byteRange isAttachment:NO mimeTypeOverrides:@{@"xml" : @"application/xml", @"xml" : @"text/xml"}] ;
+              response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:request.byteRange isAttachment:NO mimeTypeOverrides:@{@"xml" : @"application/xml", @"xhtml" : @"application/xhtml"}] ;
               [response setValue:@"bytes" forAdditionalHeader:@"Accept-Rangoooo"];
             } else {
-              response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:NSMakeRange(NSUIntegerMax, 0) isAttachment:NO mimeTypeOverrides:@{@"xml" : @"application/xml", @"xml" : @"text/xml"}];
+              response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:NSMakeRange(NSUIntegerMax, 0) isAttachment:NO mimeTypeOverrides:@{@"xml" : @"application/xml", @"xhtml" : @"application/xhtml"}];
+ [response setValue:@"GETABC" forAdditionalHeader:@"Access-ABC"];
             }
           }
         }
@@ -116,7 +118,7 @@ RCT_EXPORT_METHOD(start: (NSString *)port
           response.cacheControlMaxAge = cacheAge;
           [response setValue:@"GET" forAdditionalHeader:@"Access-Control-Request-Method"];
           [response setValue:@"OriginX-Requested-With, Content-Type, Accept, Cache-Control, Range,Access-Control-Allow-Origin"  forAdditionalHeader:@"Access-Control-Request-Headers"];
-          [response setValue: @"*" forAdditionalHeader:@"Access-Control-Allow-Origin"];
+          [response setValue: @"*abc" forAdditionalHeader:@"Access-Control-Allow-Origin"];
         } else {
           response = [GCDWebServerResponse responseWithStatusCode:kGCDWebServerHTTPStatusCode_NotFound];
         }
