@@ -98,7 +98,7 @@ RCT_EXPORT_METHOD(start: (NSString *)port
               NSString* indexPath = [filePath stringByAppendingPathComponent:indexFilename];
               NSString* indexType = [[[NSFileManager defaultManager] attributesOfItemAtPath:indexPath error:NULL] fileType];
               if ([indexType isEqualToString:NSFileTypeRegular]) {
-                      response = [[GCDWebServerFileResponse alloc] initWithFile:indexPath byteRange:NSMakeRange(NSUIntegerMax, 0) isAttachment:NO mimeTypeOverrides:@{@"xml" : @"application/xml", @"xhtml" : @"application/xhtml"}];
+                      response = [[GCDWebServerFileResponse alloc] initWithFile:indexPath byteRange:NSMakeRange(NSUIntegerMax, 0) isAttachment:NO mimeTypeOverrides:@{@"xml" : @"application/xml"}];
                        [response setValue:@"GETXYZ" forAdditionalHeader:@"Access-XYZ"];
               }
             } else {
@@ -106,10 +106,10 @@ RCT_EXPORT_METHOD(start: (NSString *)port
             }
           } else if ([fileType isEqualToString:NSFileTypeRegular]) {
             if (allowRangeRequests) {
-              response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:request.byteRange isAttachment:NO mimeTypeOverrides:@{@"xml" : @"application/xml", @"xhtml" : @"application/xhtml"}] ;
+              response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:request.byteRange isAttachment:NO mimeTypeOverrides:@{@"xml" : @"application/xml"}] ;
               [response setValue:@"bytes" forAdditionalHeader:@"Accept-Rangoooo"];
             } else {
-              response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:NSMakeRange(NSUIntegerMax, 0) isAttachment:NO mimeTypeOverrides:@{@"xml" : @"application/xml", @"xhtml" : @"application/xhtml"}];
+              response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:NSMakeRange(NSUIntegerMax, 0) isAttachment:NO mimeTypeOverrides:@{@"xml" : @"application/xml"}];
  [response setValue:@"GETABC" forAdditionalHeader:@"Access-ABC"];
             }
           }
