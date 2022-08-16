@@ -105,11 +105,10 @@ RCT_EXPORT_METHOD(start: (NSString *)port
             }
           } else if ([fileType isEqualToString:NSFileTypeRegular]) {
             if (allowRangeRequests) {
-              response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:request.byteRange isAttachment:NO mimeTypeOverrides:@{@"xml" : @"text/xml"}] ;
-              [response setValue:@"bytes" forAdditionalHeader:@"Accept-Rangoooo"];
+              response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:request.byteRange isAttachment:NO mimeTypeOverrides:@{@"xml" : @"application/xml"}] ;
+              [response setValue:@"bytes" forAdditionalHeader:@"Accept-Ranges"];
             } else {
-              response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:NSMakeRange(NSUIntegerMax, 0) isAttachment:NO mimeTypeOverrides:@{@"xml" : @"text/xml"}];
- [response setValue:@"GETABC" forAdditionalHeader:@"Access-ABC"];
+              response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:NSMakeRange(NSUIntegerMax, 0) isAttachment:NO mimeTypeOverrides:@{@"xml" : @"application/xml"}];
             }
           }
         }
@@ -117,7 +116,7 @@ RCT_EXPORT_METHOD(start: (NSString *)port
           response.cacheControlMaxAge = cacheAge;
           [response setValue:@"GET" forAdditionalHeader:@"Access-Control-Request-Method"];
           [response setValue:@"OriginX-Requested-With, Content-Type, Accept, Cache-Control, Range,Access-Control-Allow-Origin"  forAdditionalHeader:@"Access-Control-Request-Headers"];
-          [response setValue: @"*abc" forAdditionalHeader:@"Access-Control-Allow-Origin"];
+          [response setValue: @"*" forAdditionalHeader:@"Access-Control-Allow-Origin"];
         } else {
           response = [GCDWebServerResponse responseWithStatusCode:kGCDWebServerHTTPStatusCode_NotFound];
         }
