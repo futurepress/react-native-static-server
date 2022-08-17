@@ -34,8 +34,8 @@ RCT_EXPORT_METHOD(start: (NSString *)port
                   root:(NSString *)optroot
                   localOnly:(BOOL *)localhost_only
                   keepAlive:(BOOL *)keep_alive
-                  extention: (NSString *) _extention
-                  mimeType :(NSString *) _mimeType
+                  extention: (NSString *) file_extention
+                  mimeType :(NSString *) overrides_mimeType
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject) {
 
@@ -75,13 +75,13 @@ RCT_EXPORT_METHOD(start: (NSString *)port
         return;
     }
     
-    self._extention = _extention;
+    self.file_extention = file_extention;
 
-    self._mimeType = _mimeType;
+    self.overrides_mimeType = overrides_mimeType;
 
     NSDictionary<NSString*, NSString*>* overrides;
     if(self._extention) {
-      [overrides setValue:_mimeType forKey:_extention]
+      [overrides setValue:overrides_mimeType forKey:file_extention];
     }
 
 
