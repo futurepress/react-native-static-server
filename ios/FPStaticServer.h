@@ -18,7 +18,6 @@
 @property(nonatomic, retain) NSNumber *port;
 @property(assign) BOOL localhost_only;
 @property(assign) BOOL keep_alive;
-@property(assign) NSString *file_extension;
-@property(assign) NSString *mime_Type;
+@property(assign) NSDictionary<NSString *, NSString *> *mimeType
 
-@end
+    @end

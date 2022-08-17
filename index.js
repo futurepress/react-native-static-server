@@ -18,23 +18,20 @@ class StaticServer {
 				this.root = root || ROOT;
 				this.localOnly = (opts && opts.localOnly) || false;
 				this.keepAlive = (opts && opts.keepAlive) || false;
-				this.extension = (opts && opts.extension) || null;
-				this.mimeType = (opts && opts.mimeType) || null;
+				this.overrides = (opts && opts.overrides) || null;
 				break;
 			case 2:
 				this.port = `${port}`;
 				if (typeof (arguments[1]) === 'string') {
 					this.root = root;
-					this.extension = null;
-					this.mimeType = null
+					this.overrides = null
 					this.localOnly = false;
 					this.keepAlive = false;
 				} else {
 					this.root = ROOT;
 					this.localOnly = (arguments[1] && arguments[1].localOnly) || false;
 					this.keepAlive = (arguments[1] && arguments[1].keepAlive) || false;
-					this.extension = (arguments[1] && arguments[1].extension) || null;
-					this.mimeType = (arguments[1] && arguments[1].mimeType) || null;
+					this.overrides = (arguments[1] && arguments[1].overrides) || null;
 				}
 				break;
 			case 1:
@@ -43,15 +40,13 @@ class StaticServer {
 					this.root = ROOT;
 					this.localOnly = false;
 					this.keepAlive = false;
-					this.extension = null;
-					this.mimeType = null;
+					this.overrides = null;
 				} else {
 					this.port = PORT;
 					this.root = ROOT;
 					this.localOnly = (arguments[0] && arguments[0].localOnly) || false;
 					this.keepAlive = (arguments[0] && arguments[0].keepAlive) || false;
-					this.extension = (arguments[0] && arguments[0].extension) || null;
-					this.mimeType = (arguments[0] && arguments[0].mimeType) || null;
+					this.overrides = (arguments[0] && arguments[0].overrides) || null;
 				}
 				break;
 			default:
@@ -59,8 +54,7 @@ class StaticServer {
 				this.root = ROOT;
 				this.localOnly = false;
 				this.keepAlive = false;
-				this.extension = null;
-				this.mimeType = null;
+				this.overrides = null;
 		}
 
 

@@ -1,9 +1,9 @@
-declare module 'react-native-static-server' {
+declare module 'pb-react-native-static-server' {
   type Options = {
     localOnly?: boolean;
     keepAlive?: boolean;
-    extension?: string;
-    mimeType?: string;
+    override?: Record<string, string>
+
   };
 
   export default class StaticServer {
@@ -15,8 +15,8 @@ declare module 'react-native-static-server' {
     keepAlive: boolean;
     started: boolean;
     _origin?: string;
-    extension?: string;
-    mimeType?: string;
+    override?: Record<string, string>;
+
 
     start: () => Promise<string>;
     stop: () => Promise<any>;
