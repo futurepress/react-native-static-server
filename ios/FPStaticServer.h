@@ -19,6 +19,6 @@
 @property(assign) BOOL localhost_only;
 @property(assign) BOOL keep_alive;
 @property(assign) NSString *file_extension;
-@propertt(assign) NSString *mime_Type;
+@property(assign) NSString *mime_Type;
 
 @end

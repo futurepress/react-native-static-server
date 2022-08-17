@@ -34,7 +34,7 @@ RCT_EXPORT_METHOD(start:(NSString *)port
                   root:(NSString *)optroot
                   localOnly:(BOOL *)localhost_only
                   keepAlive:(BOOL *)keep_alive
-                  extention:(NSString *)file_extension
+                  extension:(NSString *)file_extension
                   mimeType:(NSString *)mime_Type
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject) {
