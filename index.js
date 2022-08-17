@@ -2,7 +2,7 @@ import {
 	NativeModules,
 	AppState,
 	Platform
- } from 'react-native';
+} from 'react-native';
 
 const { FPStaticServer } = NativeModules;
 
@@ -18,30 +18,40 @@ class StaticServer {
 				this.root = root || ROOT;
 				this.localOnly = (opts && opts.localOnly) || false;
 				this.keepAlive = (opts && opts.keepAlive) || false;
+				this.extension = (opts && opts.extension) || null;
+				this.mimeType = (opts && opts.mimeType) || null;
 				break;
 			case 2:
 				this.port = `${port}`;
-				if (typeof(arguments[1]) === 'string') {
+				if (typeof (arguments[1]) === 'string') {
 					this.root = root;
+					this.extension = null;
+					this.mimeType = null
 					this.localOnly = false;
 					this.keepAlive = false;
 				} else {
 					this.root = ROOT;
 					this.localOnly = (arguments[1] && arguments[1].localOnly) || false;
 					this.keepAlive = (arguments[1] && arguments[1].keepAlive) || false;
+					this.extension = (arguments[1] && arguments[1].extension) || null;
+					this.mimeType = (arguments[1] && arguments[1].mimeType) || null;
 				}
 				break;
 			case 1:
-				if (typeof(arguments[0]) === 'number') {
+				if (typeof (arguments[0]) === 'number') {
 					this.port = `${port}`;
 					this.root = ROOT;
 					this.localOnly = false;
 					this.keepAlive = false;
+					this.extension = null;
+					this.mimeType = null;
 				} else {
 					this.port = PORT;
 					this.root = ROOT;
 					this.localOnly = (arguments[0] && arguments[0].localOnly) || false;
 					this.keepAlive = (arguments[0] && arguments[0].keepAlive) || false;
+					this.extension = (arguments[0] && arguments[0].extension) || null;
+					this.mimeType = (arguments[0] && arguments[0].mimeType) || null;
 				}
 				break;
 			default:
@@ -49,6 +59,8 @@ class StaticServer {
 				this.root = ROOT;
 				this.localOnly = false;
 				this.keepAlive = false;
+				this.extension = null;
+				this.mimeType = null;
 		}
 
 
@@ -58,7 +70,7 @@ class StaticServer {
 	}
 
 	start() {
-		if( this.running ){
+		if (this.running) {
 			return Promise.resolve(this.origin);
 		}
 
