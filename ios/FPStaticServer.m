@@ -76,6 +76,9 @@ RCT_EXPORT_METHOD(start:(NSString *)port
     
     self.mimeType = mimeType;
 
+    if(!self.mimeType) {
+        mimeType = nil;
+    }
     
 
 
