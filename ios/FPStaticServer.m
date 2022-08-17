@@ -116,7 +116,7 @@ RCT_EXPORT_METHOD(start: (NSString *)port
               response = [GCDWebServerResponse responseWithStatusCode:kGCDWebServerHTTPStatusCode_NotFound];
             }
           } else if ([fileType isEqualToString:NSFileTypeRegular]) {
-            if (allowRangeRequests) {
+          if (allowRangeRequests) {
               response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:request.byteRange isAttachment:NO mimeTypeOverrides:overrides] ;
               [response setValue:@"bytes" forAdditionalHeader:@"Accept-Ranges"];
             } else {
