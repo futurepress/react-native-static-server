@@ -2,7 +2,7 @@ declare module 'pb-react-native-static-server' {
   type Options = {
     localOnly?: boolean;
     keepAlive?: boolean;
-    overrides?: Record<string, string>
+    overrides?: Record<string, string>;
 
   };
 

@@ -18,20 +18,20 @@ class StaticServer {
 				this.root = root || ROOT;
 				this.localOnly = (opts && opts.localOnly) || false;
 				this.keepAlive = (opts && opts.keepAlive) || false;
-				this.overrides = (opts && opts.overrides) || null;
+				this.overrides = (opts && opts.overrides) || undefined;
 				break;
 			case 2:
 				this.port = `${port}`;
 				if (typeof (arguments[1]) === 'string') {
 					this.root = root;
-					this.overrides = null
+					this.overrides = undefined
 					this.localOnly = false;
 					this.keepAlive = false;
 				} else {
 					this.root = ROOT;
 					this.localOnly = (arguments[1] && arguments[1].localOnly) || false;
 					this.keepAlive = (arguments[1] && arguments[1].keepAlive) || false;
-					this.overrides = (arguments[1] && arguments[1].overrides) || null;
+					this.overrides = (arguments[1] && arguments[1].overrides) || undefined;
 				}
 				break;
 			case 1:
@@ -40,13 +40,13 @@ class StaticServer {
 					this.root = ROOT;
 					this.localOnly = false;
 					this.keepAlive = false;
-					this.overrides = null;
+					this.overrides = undefined;
 				} else {
 					this.port = PORT;
 					this.root = ROOT;
 					this.localOnly = (arguments[0] && arguments[0].localOnly) || false;
 					this.keepAlive = (arguments[0] && arguments[0].keepAlive) || false;
-					this.overrides = (arguments[0] && arguments[0].overrides) || null;
+					this.overrides = (arguments[0] && arguments[0].overrides) || undefined;
 				}
 				break;
 			default:
@@ -54,7 +54,7 @@ class StaticServer {
 				this.root = ROOT;
 				this.localOnly = false;
 				this.keepAlive = false;
-				this.overrides = null;
+				this.overrides = undefined;
 		}
 
 
