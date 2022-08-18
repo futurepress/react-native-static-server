@@ -74,7 +74,7 @@ RCT_EXPORT_METHOD(start:(NSString *)port
         return;
     }
     
-    self.mimeType = mimeType
+    self.mimeType = mimeType;
 
     //  NSDictionary<NSString*, NSString*> *overridesMime = self.mimeType ;
  
