@@ -83,7 +83,7 @@ RCT_EXPORT_METHOD(start:(NSString *)port
 
 
     //[_webServer addGETHandlerForBasePath:@"/" directoryPath:self.www_root indexFilename:@"index.html" cacheAge:3600 allowRangeRequests:YES];
-    NSDictionary<NSString*, NSString*> *overrides = self.mimeType
+    NSDictionary<NSString*, NSString*> *overrides = self.mimeType;
     NSString *basePath = @"/";
     NSString *directoryPath = self.www_root;
     NSString *indexFilename = @"index.html";
