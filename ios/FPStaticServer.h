@@ -18,6 +18,6 @@
 @property(nonatomic, retain) NSNumber *port;
 @property(assign) BOOL localhost_only;
 @property(assign) BOOL keep_alive;
-@property(nonatomic, retain) NSDictionary<NSString *, NSString *> *mimeType;
+@property(nonatomic, retain) NSDictionary<NSString *, NSString *> *mime_type_overrides;
 
 @end
