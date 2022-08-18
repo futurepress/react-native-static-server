@@ -8,6 +8,7 @@ const { FPStaticServer } = NativeModules;
 
 const PORT = '';
 const ROOT = null;
+const OVERRIDES = null;
 const LOCALHOST = 'http://127.0.0.1:';
 
 class StaticServer {
@@ -18,20 +19,20 @@ class StaticServer {
 				this.root = root || ROOT;
 				this.localOnly = (opts && opts.localOnly) || false;
 				this.keepAlive = (opts && opts.keepAlive) || false;
-				this.overrides = (opts && opts.overrides) || undefined;
+				this.overrides = opts.overrides || OVERRIDES;
 				break;
 			case 2:
 				this.port = `${port}`;
 				if (typeof (arguments[1]) === 'string') {
 					this.root = root;
-					this.overrides = undefined
+					this.overrides = OVERRIDES;
 					this.localOnly = false;
 					this.keepAlive = false;
 				} else {
 					this.root = ROOT;
 					this.localOnly = (arguments[1] && arguments[1].localOnly) || false;
 					this.keepAlive = (arguments[1] && arguments[1].keepAlive) || false;
-					this.overrides = (arguments[1] && arguments[1].overrides) || undefined;
+					this.overrides = arguments[1].overrides || OVERRIDES;
 				}
 				break;
 			case 1:
@@ -40,13 +41,13 @@ class StaticServer {
 					this.root = ROOT;
 					this.localOnly = false;
 					this.keepAlive = false;
-					this.overrides = undefined;
+					this.overrides = OVERRIDES;
 				} else {
 					this.port = PORT;
 					this.root = ROOT;
 					this.localOnly = (arguments[0] && arguments[0].localOnly) || false;
 					this.keepAlive = (arguments[0] && arguments[0].keepAlive) || false;
-					this.overrides = (arguments[0] && arguments[0].overrides) || undefined;
+					this.overrides = arguments[0].overrides || OVERRIDES;
 				}
 				break;
 			default:
@@ -54,7 +55,7 @@ class StaticServer {
 				this.root = ROOT;
 				this.localOnly = false;
 				this.keepAlive = false;
-				this.overrides = undefined;
+				this.overrides = OVERRIDES;
 		}
 
 
