@@ -74,16 +74,18 @@ RCT_EXPORT_METHOD(start:(NSString *)port
         return;
     }
     
-    self.mimeType = mimeType;
+    
 
-    if(!self.mimeType) {
-        mimeType = nil;
+    if(mimeType) {
+        self.mimeType = mimeType;
     }
+
+     NSDictionary<NSString*, NSString*> *overridesMime = self.mimeType ;
+ 
     
 
 
     //[_webServer addGETHandlerForBasePath:@"/" directoryPath:self.www_root indexFilename:@"index.html" cacheAge:3600 allowRangeRequests:YES];
-    NSDictionary<NSString*, NSString*> *overrides = self.mimeType;
     NSString *basePath = @"/";
     NSString *directoryPath = self.www_root;
     NSString *indexFilename = @"index.html";
@@ -115,10 +117,10 @@ RCT_EXPORT_METHOD(start:(NSString *)port
             }
           } else if ([fileType isEqualToString:NSFileTypeRegular]) {
           if (allowRangeRequests) {
-              response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:request.byteRange isAttachment:NO mimeTypeOverrides:overrides] ;
+              response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:request.byteRange isAttachment:NO mimeTypeOverrides:overridesMime] ;
               [response setValue:@"bytes" forAdditionalHeader:@"Accept-Ranges"];
             } else {
-              response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:NSMakeRange(NSUIntegerMax, 0) isAttachment:NO mimeTypeOverrides:overrides];
+              response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:NSMakeRange(NSUIntegerMax, 0) isAttachment:NO mimeTypeOverrides:overridesMime];
             }
           }
         }
