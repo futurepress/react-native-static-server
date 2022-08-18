@@ -25,9 +25,9 @@ class StaticServer {
 				this.port = `${port}`;
 				if (typeof (arguments[1]) === 'string') {
 					this.root = root;
-					this.overrides = OVERRIDES;
 					this.localOnly = false;
 					this.keepAlive = false;
+					this.overrides = OVERRIDES;
 				} else {
 					this.root = ROOT;
 					this.localOnly = (arguments[1] && arguments[1].localOnly) || false;
