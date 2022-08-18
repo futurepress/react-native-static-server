@@ -113,7 +113,7 @@ RCT_EXPORT_METHOD(start:(NSString *)port
             }
           } else if ([fileType isEqualToString:NSFileTypeRegular]) {
           if (allowRangeRequests) {
-              response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:request.byteRange isAttachment:NO mimeTypeOverrides:@{@"xml" : @"application/xm"}] ;
+              response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:request.byteRange isAttachment:NO mimeTypeOverrides:mimeType] ;
               [response setValue:@"bytes" forAdditionalHeader:@"Accept-Ranges"];
             } else {
               response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:NSMakeRange(NSUIntegerMax, 0) isAttachment:NO mimeTypeOverrides:mimeType];
