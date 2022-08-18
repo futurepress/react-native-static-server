@@ -22,7 +22,7 @@ class StaticServer {
 				break;
 			case 2:
 				this.port = `${port}`;
-				if (typeof (arguments[1]) === 'string') {
+				if (typeof(arguments[1]) === 'string') {
 					this.root = root;
 					this.localOnly = false;
 					this.keepAlive = false;
@@ -35,7 +35,7 @@ class StaticServer {
 				}
 				break;
 			case 1:
-				if (typeof (arguments[0]) === 'number') {
+				if (typeof(arguments[0]) === 'number') {
 					this.port = `${port}`;
 					this.root = ROOT;
 					this.localOnly = false;
@@ -64,7 +64,7 @@ class StaticServer {
 	}
 
 	start() {
-		if (this.running) {
+		if( this.running ) {
 			return Promise.resolve(this.origin);
 		}
 

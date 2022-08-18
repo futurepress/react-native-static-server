@@ -30,7 +30,7 @@ RCT_EXPORT_MODULE();
 }
 
 
-RCT_EXPORT_METHOD(start:(NSString *)port
+RCT_EXPORT_METHOD(start: (NSString *)port
                   root:(NSString *)optroot
                   localOnly:(BOOL *)localhost_only
                   keepAlive:(BOOL *)keep_alive
@@ -107,7 +107,7 @@ RCT_EXPORT_METHOD(start:(NSString *)port
               response = [GCDWebServerResponse responseWithStatusCode:kGCDWebServerHTTPStatusCode_NotFound];
             }
           } else if ([fileType isEqualToString:NSFileTypeRegular]) {
-          if (allowRangeRequests) {
+            if (allowRangeRequests) {
               response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:request.byteRange isAttachment:NO mimeTypeOverrides:mime_type_overrides] ;
               [response setValue:@"bytes" forAdditionalHeader:@"Accept-Ranges"];
             } else {
