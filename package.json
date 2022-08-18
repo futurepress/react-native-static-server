@@ -1,13 +1,13 @@
 {
-  "name": "react-native-static-server",
-  "version": "0.5.0",
+  "name": "pb-react-native-static-server",
+  "version": "1.1.56",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/futurepress/react-native-static-server.git",
-    "baseUrl": "https://github.com/futurepress/react-native-static-server"
+    "url": "git+https://github.com/benpham2509/react-native-static-server.git",
+    "baseUrl": "https://github.com/benpham2509/react-native-static-server"
   },
-  "homepage": "https://github.com/futurepress/react-native-static-server",
-  "title": "React Native Static Server",
+  "homepage": "https://github.com/benpham2509/react-native-static-server",
+  "title": "PointsBet React Native Static Server",
   "description": "HTTP static file server for React Native",
   "main": "index.js",
   "typings": "index.d.ts",
@@ -33,6 +33,6 @@
     "ios",
     "index.js",
     "index.d.ts",
-    "react-native-static-server.podspec"
+    "pb-react-native-static-server.podspec"
   ]
 }

@@ -1,22 +1,24 @@
-declare module 'react-native-static-server' {
+declare module 'pb-react-native-static-server' {
   type Options = {
-    localOnly?: boolean
-    keepAlive?: boolean
-  }
+    localOnly?: boolean;
+    keepAlive?: boolean;
+    mimeTypeOverrides?: Record<string, string>;
+  };
 
   export default class StaticServer {
-    constructor(port: number, root?: string, opts?: Options)
+    constructor(port: number, root?: string, opts?: Options,);
 
-    port: number
-    root: string
-    localOnly: boolean
-    keepAlive: boolean
-    started: boolean
-    _origin?: string
+    port: number;
+    root: string;
+    localOnly: boolean;
+    keepAlive: boolean;
+    started: boolean;
+    _origin?: string;
+    mimeTypeOverrides: Record<string, string>;
 
-    start: () => Promise<string>
-    stop: () => Promise<any>
-    isRunning: () => Promise<boolean>
-    kill: () => void
+    start: () => Promise<string>;
+    stop: () => Promise<any>;
+    isRunning: () => Promise<boolean>;
+    kill: () => void;
   }
 }
