@@ -15,7 +15,7 @@ declare module 'pb-react-native-static-server' {
     keepAlive: boolean;
     started: boolean;
     _origin?: string;
-    overrides?: Record<string, string>;
+    overrides: Record<string, string>;
 
 
     start: () => Promise<string>;

@@ -74,11 +74,11 @@ RCT_EXPORT_METHOD(start:(NSString *)port
         return;
     }
     
-    self.mimeType = mimeType;
+    self.mimeType = overrides;
 
-    if(!self.mimeType) {
-        mimeType = nil;
-    }
+    // if(!self.mimeType) {
+    //     mimeType = nil;
+    // }
     
 
 
