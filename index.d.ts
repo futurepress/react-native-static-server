@@ -2,7 +2,8 @@ declare module 'react-native-static-server' {
   type Options = {
     localOnly?: boolean
     keepAlive?: boolean
-  }
+    mimeTypeOverrides?: Record<string, string>
+  };
 
   export default class StaticServer {
     constructor(port: number, root?: string, opts?: Options)
@@ -13,6 +14,7 @@ declare module 'react-native-static-server' {
     keepAlive: boolean
     started: boolean
     _origin?: string
+    mimeTypeOverrides: Record<string, string>
 
     start: () => Promise<string>
     stop: () => Promise<any>
