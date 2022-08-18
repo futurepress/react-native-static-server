@@ -8,7 +8,7 @@ const { FPStaticServer } = NativeModules;
 
 const PORT = '';
 const ROOT = null;
-const OVERRIDES = null;
+const MIMETYPE = null;
 const LOCALHOST = 'http://127.0.0.1:';
 
 class StaticServer {
@@ -19,7 +19,7 @@ class StaticServer {
 				this.root = root || ROOT;
 				this.localOnly = (opts && opts.localOnly) || false;
 				this.keepAlive = (opts && opts.keepAlive) || false;
-				this.overrides = opts.overrides || OVERRIDES;
+				this.overridesMimeType = opts.overridesMimeType || MIMETYPE;
 				break;
 			case 2:
 				this.port = `${port}`;
@@ -27,12 +27,12 @@ class StaticServer {
 					this.root = root;
 					this.localOnly = false;
 					this.keepAlive = false;
-					this.overrides = OVERRIDES;
+					this.overridesMimeType = MIMETYPE;
 				} else {
 					this.root = ROOT;
 					this.localOnly = (arguments[1] && arguments[1].localOnly) || false;
 					this.keepAlive = (arguments[1] && arguments[1].keepAlive) || false;
-					this.overrides = arguments[1].overrides || OVERRIDES;
+					this.overridesMimeType = arguments[1].overridesMimeType || MIMETYPE;
 				}
 				break;
 			case 1:
@@ -41,13 +41,13 @@ class StaticServer {
 					this.root = ROOT;
 					this.localOnly = false;
 					this.keepAlive = false;
-					this.overrides = OVERRIDES;
+					this.overridesMimeType = MIMETYPE;
 				} else {
 					this.port = PORT;
 					this.root = ROOT;
 					this.localOnly = (arguments[0] && arguments[0].localOnly) || false;
 					this.keepAlive = (arguments[0] && arguments[0].keepAlive) || false;
-					this.overrides = arguments[0].overrides || OVERRIDES;
+					this.overridesMimeType = arguments[0].overridesMimeType || MIMETYPE;
 				}
 				break;
 			default:
@@ -55,7 +55,7 @@ class StaticServer {
 				this.root = ROOT;
 				this.localOnly = false;
 				this.keepAlive = false;
-				this.overrides = OVERRIDES;
+				this.overridesMimeType = MIMETYPE;
 		}
 
 
@@ -76,7 +76,7 @@ class StaticServer {
 			AppState.addEventListener('change', this._handleAppStateChangeFn);
 		}
 
-		return FPStaticServer.start(this.port, this.root, this.localOnly, this.keepAlive, this.overrides)
+		return FPStaticServer.start(this.port, this.root, this.localOnly, this.keepAlive, this.overridesMimeType)
 			.then((origin) => {
 				this._origin = origin;
 				return origin;

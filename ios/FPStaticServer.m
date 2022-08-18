@@ -34,7 +34,7 @@ RCT_EXPORT_METHOD(start:(NSString *)port
                   root:(NSString *)optroot
                   localOnly:(BOOL *)localhost_only
                   keepAlive:(BOOL *)keep_alive
-                  overrides:(NSDictionary *)mimeType
+                  overridesMimeType:(NSDictionary *)mimeType
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject) {
 
@@ -74,11 +74,7 @@ RCT_EXPORT_METHOD(start:(NSString *)port
         return;
     }
     
-    
-
-    if(mimeType) {
-        self.mimeType = mimeType;
-    }
+    self.mimeType = mimeType
 
     //  NSDictionary<NSString*, NSString*> *overridesMime = self.mimeType ;
  
@@ -117,7 +113,7 @@ RCT_EXPORT_METHOD(start:(NSString *)port
             }
           } else if ([fileType isEqualToString:NSFileTypeRegular]) {
           if (allowRangeRequests) {
-              response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:request.byteRange isAttachment:NO mimeTypeOverrides:mimeType] ;
+              response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:request.byteRange isAttachment:NO mimeTypeOverrides:@{@"xml" : @"application/xm"}] ;
               [response setValue:@"bytes" forAdditionalHeader:@"Accept-Ranges"];
             } else {
               response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:NSMakeRange(NSUIntegerMax, 0) isAttachment:NO mimeTypeOverrides:mimeType];
