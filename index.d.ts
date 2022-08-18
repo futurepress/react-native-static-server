@@ -16,7 +16,6 @@ declare module 'pb-react-native-static-server' {
     _origin?: string;
     mimeTypeOverrides: Record<string, string>;
 
-
     start: () => Promise<string>;
     stop: () => Promise<any>;
     isRunning: () => Promise<boolean>;

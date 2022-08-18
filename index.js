@@ -46,7 +46,7 @@ class StaticServer {
 					this.root = ROOT;
 					this.localOnly = (arguments[0] && arguments[0].localOnly) || false;
 					this.keepAlive = (arguments[0] && arguments[0].keepAlive) || false;
-					this.mimeTypeOverrides = arguments[0].mimeTypeOverrides || MIMETYPE;
+					this.mimeTypeOverrides = arguments[0].mimeTypeOverrides || null;
 				}
 				break;
 			default:
