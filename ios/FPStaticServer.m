@@ -34,6 +34,7 @@ RCT_EXPORT_METHOD(start: (NSString *)port
                   root:(NSString *)optroot
                   localOnly:(BOOL *)localhost_only
                   keepAlive:(BOOL *)keep_alive
+                  mimeTypeOverrides:(NSDictionary *)mime_type_overrides
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject) {
 
@@ -67,12 +68,14 @@ RCT_EXPORT_METHOD(start: (NSString *)port
 
     self.localhost_only = localhost_only;
 
+    self.mime_type_overrides = mime_type_overrides;
+
     if(_webServer.isRunning != NO) {
         NSLog(@"StaticServer already running at %@", self.url);
         resolve(self.url);
         return;
     }
-
+     
     //[_webServer addGETHandlerForBasePath:@"/" directoryPath:self.www_root indexFilename:@"index.html" cacheAge:3600 allowRangeRequests:YES];
     NSString *basePath = @"/";
     NSString *directoryPath = self.www_root;
@@ -105,10 +108,10 @@ RCT_EXPORT_METHOD(start: (NSString *)port
             }
           } else if ([fileType isEqualToString:NSFileTypeRegular]) {
             if (allowRangeRequests) {
-              response = [GCDWebServerFileResponse responseWithFile:filePath byteRange:request.byteRange];
+              response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:request.byteRange isAttachment:NO mimeTypeOverrides:mime_type_overrides] ;
               [response setValue:@"bytes" forAdditionalHeader:@"Accept-Ranges"];
             } else {
-              response = [GCDWebServerFileResponse responseWithFile:filePath];
+              response = [[GCDWebServerFileResponse alloc] initWithFile:filePath byteRange:NSMakeRange(NSUIntegerMax, 0) isAttachment:NO mimeTypeOverrides:mime_type_overrides];
             }
           }
         }
