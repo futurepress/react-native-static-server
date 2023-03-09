@@ -3,6 +3,30 @@
 
 A cross platform component for serving static assets with React Native.
 
+### 更新
+
+基于原始react-native-static-server项目新增功能：
+
+#### 新增`startUploader`函数
+
+使用方法：
+
+```
+const server = new StaticServer(0);
+server.startUploader().then(uploaderUrl => console.log(uploaderUrl));
+```
+
+1. 基于https://github.com/swisspol/GCDWebServer/blob/master/GCDWebUploader/GCDWebUploader.h 实现pc文件上传到ios里的功能。
+2. 文件会默认保存到app document目录下的`/uploader`文件夹里。
+3. 目前不支持Android
+
+##### TODO list
+
+1. 基于GCDWebUploader限制上传文件的后缀名
+2. 自定义上传页面的title header 等
+
+
+
 ## Getting started
 
 `$ npm install react-native-static-server --save`

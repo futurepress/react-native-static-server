@@ -11,6 +11,15 @@ RCT_EXPORT_MODULE();
 
         [GCDWebServer self];
         _webServer = [[GCDWebServer alloc] init];
+
+        NSString* documentsPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingString:@"/uploaded"];
+        NSError * error = nil;
+        [[NSFileManager defaultManager] createDirectoryAtPath:documentsPath
+                                  withIntermediateDirectories:YES
+                                                   attributes:nil
+                                                        error:&error];
+        _webUploader = [[GCDWebUploader alloc] initWithUploadDirectory:documentsPath];
+
     }
     return self;
 }
@@ -27,6 +36,29 @@ RCT_EXPORT_MODULE();
 - (dispatch_queue_t)methodQueue
 {
     return dispatch_queue_create("com.futurepress.staticserver", DISPATCH_QUEUE_SERIAL);
+}
+
+RCT_EXPORT_METHOD(startUploader: (RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject){
+    if([_webUploader isRunning]) {
+        resolve([NSString stringWithFormat:@"%@", _webUploader.serverURL]);
+        return;
+    }
+
+    NSError *error;
+    NSMutableDictionary* options = [NSMutableDictionary dictionary];
+    [options setObject:[NSNumber numberWithInteger:0] forKey:GCDWebServerOption_Port];
+    [_webUploader startWithOptions:options error:&error];
+    
+    resolve([NSString stringWithFormat:@"%@", _webUploader.serverURL]);
+}
+
+RCT_EXPORT_METHOD(stopUploader: (RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject){
+    if(_webUploader.isRunning == YES) {
+        [_webUploader stop];
+        NSLog(@"StaticServer stopped");
+    }
 }
 
 
